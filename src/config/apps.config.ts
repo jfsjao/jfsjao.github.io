@@ -1,0 +1,58 @@
+import type { DesktopIconConfig } from '../types/window.types'
+
+export const DESKTOP_APPS: DesktopIconConfig[] = [
+  {
+    appId: 'word',
+    label: 'Sobre Mim.doc',
+    icon: '/assets/icons/word.png',
+    defaultWidth: 700,
+    defaultHeight: 500,
+    defaultX: 80,
+    defaultY: 60,
+  },
+  {
+    appId: 'ares',
+    label: 'Projetos',
+    icon: '/assets/icons/ares.png',
+    defaultWidth: 680,
+    defaultHeight: 480,
+    defaultX: 120,
+    defaultY: 80,
+  },
+  {
+    appId: 'msn',
+    label: 'MSN Messenger',
+    icon: '/assets/icons/msn.png',
+    defaultWidth: 320,
+    defaultHeight: 520,
+    defaultX: 600,
+    defaultY: 60,
+  },
+  {
+    appId: 'winamp',
+    label: 'Winamp',
+    icon: '/assets/icons/winamp.png',
+    defaultWidth: 275,
+    defaultHeight: 136,
+    defaultX: 900,
+    defaultY: 60,
+  },
+  {
+    appId: 'paint',
+    label: 'Skills.bmp',
+    icon: '/assets/icons/paint.png',
+    defaultWidth: 750,
+    defaultHeight: 520,
+    defaultX: 100,
+    defaultY: 100,
+  },
+  {
+    appId: 'mycomputer',
+    label: 'Meu Computador',
+    icon: '/assets/icons/mycomputer.png',
+    defaultWidth: 500,
+    defaultHeight: 380,
+    defaultX: 150,
+    defaultY: 80,
+  },
+]

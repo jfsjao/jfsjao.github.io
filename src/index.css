@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    min-width: 320px;
+    height: 100%;
+    min-height: 100svh;
+    margin: 0;
+  }
+
+  body {
+    overflow: hidden;
+    font-family: Tahoma, 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    color: #000;
+    background: #000;
+    letter-spacing: 0;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+
+  button {
+    cursor: default;
+  }
+
+  ::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #ece9d8;
+    border: 1px solid #b5b1a0;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #6ca0f6, #245edc);
+    border: 1px solid #0a246a;
+  }
+}
+
+@layer components {
+  .xp-titlebar-active {
+    background: linear-gradient(
+      to bottom,
+      #245edc 0%,
+      #0a246a 3%,
+      #3d6bc4 6%,
+      #245edc 100%
+    );
+  }
+
+  .xp-titlebar-inactive {
+    background: linear-gradient(to bottom, #7a96df 0%, #5a79c0 100%);
+  }
+
+  .xp-desktop-bg {
+    background:
+      radial-gradient(circle at 35% 78%, rgba(128, 214, 85, 0.95) 0 18%, transparent 19%),
+      linear-gradient(155deg, rgba(69, 174, 61, 0.96) 0 30%, transparent 31%),
+      linear-gradient(180deg, #77b8ff 0 42%, #3a8ed8 43%, #2e5fa3 100%);
+  }
+}

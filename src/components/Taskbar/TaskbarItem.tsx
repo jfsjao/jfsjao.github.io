@@ -21,11 +21,16 @@ export function TaskbarItem({ windowState }: TaskbarItemProps) {
   return (
     <button
       type="button"
-      className="min-w-0 max-w-48 flex-1 truncate rounded-[2px] border border-xp-blue-light bg-xp-taskbar-btn px-2 py-1 text-left text-xp-sm shadow-btn-xp hover:bg-xp-taskbar-btn-hov"
+      className={`flex min-w-0 max-w-48 flex-1 items-center gap-2 truncate rounded-[2px] border px-2 py-1 text-left text-xp-sm shadow-btn-xp ${
+        windowState.isFocused && !windowState.isMinimized
+          ? 'border-[#0d2d89] bg-[linear-gradient(180deg,#1644aa,#0b2f8b)]'
+          : 'border-xp-blue-light bg-[linear-gradient(180deg,#3a70d8,#1e3f9e)] hover:bg-xp-taskbar-btn-hov'
+      }`}
       onClick={handleClick}
       title={windowState.title}
     >
-      {windowState.title}
+      <img src={windowState.icon} alt="" className="h-5 w-5 shrink-0" draggable={false} />
+      <span className="truncate">{windowState.title}</span>
     </button>
   )
 }

@@ -1,17 +1,20 @@
-import { useEffect, useState } from 'react'
-import { BootScreen } from './components/Boot/BootScreen'
-import { Desktop } from './components/Desktop/Desktop'
+import { useEffect, useState } from 'react';
+import { BootScreen } from './components/Boot/BootScreen';
+import { Desktop } from './components/Desktop/Desktop';
 
 function App() {
-  const [isBooting, setIsBooting] = useState(true)
+  const [isBooting, setIsBooting] = useState(true);
 
   useEffect(() => {
-    const bootTimer = window.setTimeout(() => setIsBooting(false), 1800)
+    const bootTimer = window.setTimeout(() => setIsBooting(false), 1800);
+    return () => window.clearTimeout(bootTimer);
+  }, []);
 
-    return () => window.clearTimeout(bootTimer)
-  }, [])
-
-  return isBooting ? <BootScreen /> : <Desktop />
+  return isBooting ? (
+    <BootScreen onStart={() => setIsBooting(false)} />
+  ) : (
+    <Desktop />
+  );
 }
 
-export default App
+export default App;

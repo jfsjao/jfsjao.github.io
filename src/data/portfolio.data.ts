@@ -49,8 +49,8 @@ export const SKILLS = [
 ]
 
 export const CONTACTS = [
-  { label: 'GitHub', url: 'https://github.com/joaofelipe0143', icon: 'github' },
-  { label: 'LinkedIn', url: 'https://linkedin.com/in/joaofelipe', icon: 'linkedin' },
+  { label: 'GitHub', url: 'https://github.com/jfsjao', icon: 'github' },
+  { label: 'LinkedIn', url: 'https://www.linkedin.com/in/joao-silva-jfs', icon: 'linkedin' },
   { label: 'Email', url: 'mailto:joaofelipe0143@gmail.com', icon: 'mail' },
   { label: 'WhatsApp', url: 'https://wa.me/5516992950014', icon: 'phone' },
 ]

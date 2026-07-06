@@ -10,6 +10,8 @@ import { DESKTOP_APPS } from '../../config/apps.config'
 import { useWindowStore } from '../../store/windowStore'
 import type { AppId, DesktopIconConfig } from '../../types/window.types'
 import { DesktopIcon } from './DesktopIcon'
+import { XPNotification } from './XPNotification'
+import wallpaperUrl from '../../assets/wallpaper/wallpaper__bliss.jpg'
 
 function renderApp(appId: AppId) {
   const appMap: Record<AppId, JSX.Element> = {
@@ -28,8 +30,13 @@ export function Desktop() {
   const windows = useWindowStore((state) => state.windows)
 
   return (
-    <main className="xp-desktop-bg relative h-svh overflow-hidden font-xp text-xp-text">
-      <div className="grid w-24 grid-flow-row auto-rows-[88px] gap-2 p-4">
+    <main
+      className="relative h-svh overflow-hidden bg-cover bg-center font-xp text-xp-text"
+      style={{ backgroundImage: `url(${wallpaperUrl})` }}
+    >
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(0,0,0,0.02)_45%,rgba(0,0,0,0.18))]" />
+      <div className="xp-screen-lines pointer-events-none absolute inset-0" />
+      <div className="relative grid w-24 grid-flow-row auto-rows-[91px] gap-1 p-3">
         {DESKTOP_APPS.map((app: DesktopIconConfig) => (
           <DesktopIcon key={app.appId} app={app} />
         ))}
@@ -41,6 +48,7 @@ export function Desktop() {
         </Window>
       ))}
 
+      <XPNotification />
       <Taskbar />
     </main>
   )

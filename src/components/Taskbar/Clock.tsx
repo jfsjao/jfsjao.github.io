@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import infoIcon from '../../assets/icons/icon__info.png'
 
 function formatClock(date: Date) {
   return date.toLocaleTimeString('pt-BR', {
@@ -17,8 +18,16 @@ export function Clock() {
   }, [])
 
   return (
-    <div className="flex h-full w-24 items-center justify-center border-l border-xp-blue-light bg-xp-blue-mid text-xp-sm">
-      {time}
+    <div className="flex h-full w-[118px] items-center justify-center gap-2 border-l border-[#6eb4ff] bg-[linear-gradient(180deg,#22a6ef,#0d7ed2)] text-xp-sm shadow-[inset_1px_0_0_rgba(255,255,255,0.4)]">
+      <button
+        type="button"
+        className="flex h-5 w-5 items-center justify-center rounded-[2px] bg-[#0b69b7] text-[10px] shadow-[inset_1px_1px_0_rgba(255,255,255,0.45)]"
+        aria-label="Mostrar icones ocultos"
+      >
+        {'<'}
+      </button>
+      <img src={infoIcon} alt="" className="h-4 w-4" draggable={false} />
+      <span>{time}</span>
     </div>
   )
 }

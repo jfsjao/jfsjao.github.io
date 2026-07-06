@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>Portfolio Startup</title>
+    <HTA:APPLICATION
+         ID="oHTA"
+         BORDER="none"
+         CAPTION="no"
+         SHOWINTASKBAR="no"
+         SINGLEINSTANCE="yes"
+         SYSMENU="no"
+         SYSMENU="no"
+         WINDOWSTATE="maximize"
+    />
+    <style>
+        html,body{margin:0;padding:0;height:100%;overflow:hidden;background:#111;color:#eee;font-family:Arial,sans-serif;}
+        #content{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+        #btnWin{margin-top:20px;padding:12px 24px;font-size:1rem;cursor:pointer;background:#0066cc;color:#fff;border:none;border-radius:4px;}
+        #btnWin:hover{background:#0052a3;}
+    </style>
+</head>
+<body>
+<div id="content">
+    <object data="index.html" type="text/html" width="100%" height="100%" style="border:none;"></object>
+    <button id="btnWin">Abrir Modo Windows</button>
+</div>
+<script>
+    document.getElementById('btnWin').onclick = function () {
+        var shell = new ActiveXObject("WScript.Shell");
+        shell.Run("explorer.exe");
+        window.close();
+    };
+</script>
+</body>
+</html>

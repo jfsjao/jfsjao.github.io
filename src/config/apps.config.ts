@@ -1,10 +1,17 @@
 import type { DesktopIconConfig } from '../types/window.types'
 
+const wordIcon = new URL('../assets/icons/docword.png', import.meta.url).href
+const aresIcon = new URL('../assets/icons/icon__file_explorer--large.png', import.meta.url).href
+const msnIcon = new URL('../assets/icons/icon__messenger--large.png', import.meta.url).href
+const winampIcon = new URL('../assets/icons/icon__media_player--large.png', import.meta.url).href
+const paintIcon = new URL('../assets/icons/icon_style_options--large.png', import.meta.url).href
+const myComputerIcon = new URL('../assets/icons/icon__computer--large.png', import.meta.url).href
+
 export const DESKTOP_APPS: DesktopIconConfig[] = [
   {
     appId: 'word',
-    label: 'Sobre Mim.doc',
-    icon: '/assets/icons/word.png',
+    label: 'Sobre Mim.docx',
+    icon: wordIcon, 
     defaultWidth: 700,
     defaultHeight: 500,
     defaultX: 80,
@@ -13,7 +20,7 @@ export const DESKTOP_APPS: DesktopIconConfig[] = [
   {
     appId: 'ares',
     label: 'Projetos',
-    icon: '/assets/icons/ares.png',
+    icon: aresIcon,
     defaultWidth: 680,
     defaultHeight: 480,
     defaultX: 120,
@@ -22,7 +29,7 @@ export const DESKTOP_APPS: DesktopIconConfig[] = [
   {
     appId: 'msn',
     label: 'MSN Messenger',
-    icon: '/assets/icons/msn.png',
+    icon: msnIcon,
     defaultWidth: 320,
     defaultHeight: 520,
     defaultX: 600,
@@ -31,7 +38,7 @@ export const DESKTOP_APPS: DesktopIconConfig[] = [
   {
     appId: 'winamp',
     label: 'Winamp',
-    icon: '/assets/icons/winamp.png',
+    icon: winampIcon,
     defaultWidth: 275,
     defaultHeight: 136,
     defaultX: 900,
@@ -40,7 +47,7 @@ export const DESKTOP_APPS: DesktopIconConfig[] = [
   {
     appId: 'paint',
     label: 'Skills.bmp',
-    icon: '/assets/icons/paint.png',
+    icon: paintIcon,
     defaultWidth: 750,
     defaultHeight: 520,
     defaultX: 100,
@@ -49,7 +56,7 @@ export const DESKTOP_APPS: DesktopIconConfig[] = [
   {
     appId: 'mycomputer',
     label: 'Meu Computador',
-    icon: '/assets/icons/mycomputer.png',
+    icon: myComputerIcon,
     defaultWidth: 500,
     defaultHeight: 380,
     defaultX: 150,

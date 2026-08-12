@@ -35,6 +35,58 @@ export const PROJECTS = [
     demo: '',
     status: 'complete' as const,
   },
+  {
+    id: 3,
+    name: 'All In Creator.exe',
+    description:
+      'Plataforma full stack de venda de packs digitais — frontend Angular, API própria, pagamentos e autenticação',
+    tech: ['Angular 20', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL', 'Firebase'],
+    size: '24.6 MB',
+    seeds: 34,
+    peers: 7,
+    url: 'https://allincreator.com/home',
+    demo: 'https://github.com/jfsjao/All-In-Creator',
+    status: 'progress' as const,
+  },
+  {
+    id: 4,
+    name: 'Mid Cardápio.exe',
+    description:
+      'Cardápio digital mobile-first da MID Conveniência — o cliente monta o pedido e envia direto pelo WhatsApp',
+    tech: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'GSAP'],
+    size: '4.1 MB',
+    seeds: 19,
+    peers: 3,
+    url: 'https://mid-cardapio.onrender.com/',
+    demo: 'https://github.com/jfsjao/Mid-Cardapio',
+    status: 'progress' as const,
+  },
+  {
+    id: 5,
+    name: 'Diagnóstico Financeiro.exe',
+    description:
+      'Diagnóstico financeiro por QR Code, personalizado por parceiro — monorepo React + TypeScript + Vite',
+    tech: ['React', 'TypeScript', 'Vite'],
+    size: '3.5 MB',
+    seeds: 11,
+    peers: 2,
+    url: 'https://polimata-diagnostico.onrender.com/',
+    demo: 'https://github.com/jfsjao/finance-diagnostic',
+    status: 'progress' as const,
+  },
+  {
+    id: 6,
+    name: 'Auth API.exe',
+    description:
+      'API de autenticação modular em NestJS — JWT, refresh tokens com rotação, roles e permissões, pronta para reuso',
+    tech: ['NestJS', 'TypeScript', 'PostgreSQL', 'Redis', 'Docker', 'JWT'],
+    size: '6.8 MB',
+    seeds: 27,
+    peers: 5,
+    url: 'https://github.com/jfsjao/auth-api',
+    demo: '',
+    status: 'progress' as const,
+  },
 ]
 
 export const SKILLS = [

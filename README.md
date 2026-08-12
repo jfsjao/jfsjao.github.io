@@ -1,5 +1,17 @@
 # Portifolio JF - Windows XP
 
+## Referência técnica
+
+O modo Windows XP usa
+[`cyanoxide/react-xp`](https://github.com/cyanoxide/react-xp) como benchmark de
+arquitetura e comportamento.
+
+Análise, diferenças e limites de reutilização:
+[`docs/react-xp-reference.md`](docs/react-xp-reference.md).
+
+Código e assets externos não foram copiados. Nenhum arquivo de licença foi
+encontrado no commit analisado.
+
 Portfolio pessoal inspirado no Windows XP, feito como uma experiencia de desktop interativo no navegador.
 
 A ideia e transformar secoes comuns de um portfolio em "programas" classicos: o usuario entra em um desktop com wallpaper, icones, barra de tarefas e janelas que podem ser abertas, focadas, minimizadas e maximizadas.

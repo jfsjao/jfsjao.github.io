@@ -8,7 +8,7 @@ Quem não lembra do Paciência Spider e do Pinball? Quero adicionar essas e outr
 
 Enquanto isso, fique à vontade para abrir os programas, conhecer meus projetos e explorar um pouco da minha trajetória.
 
-Se quiser voltar ao modo mais profissional, abra o Menu Iniciar e clique em "Portfólio".
+Para voltar ao portfólio normal, abra o Menu Iniciar, clique em "Desligar" e depois em "Desligar" novamente na janela de confirmação.
 
 João Felipe`
 
@@ -17,7 +17,7 @@ export function NotepadApp() {
     <article className="flex h-full flex-col bg-white text-black">
       <nav
         aria-label="Menu do Bloco de Notas"
-        className="flex h-[29px] shrink-0 items-center gap-0 border-b border-[#aca899] bg-[#ece9d8] px-[2px] font-[Tahoma] text-[14px]"
+        className="flex h-[29px] shrink-0 items-center gap-0 border-b border-[#aca899] bg-[#ece9d8] px-[2px] font-xp text-[14px]"
       >
         {['Arquivo', 'Editar', 'Formatar', 'Exibir', 'Ajuda'].map((item) => (
           <span key={item} className="px-[7px] py-1">

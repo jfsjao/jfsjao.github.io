@@ -16,7 +16,6 @@ export function AresHintNotification({ visible, onClose }: AresHintNotificationP
       title="Dica de busca"
       icon={searchIcon}
       onClose={onClose}
-      className="bottom-[144px]"
     >
       <p>Pesquise uma tecnologia, como React, Angular ou NestJS, para encontrar projetos relacionados.</p>
     </XPBalloon>

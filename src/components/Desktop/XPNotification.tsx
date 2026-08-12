@@ -16,7 +16,6 @@ export function XPNotification({ visible, onClose }: XPNotificationProps) {
       title="Portfólio Windows XP"
       icon={infoIcon}
       onClose={onClose}
-      className="bottom-[42px]"
     >
       <p>Abra Leia-me.txt para conhecer a história deste portfólio.</p>
     </XPBalloon>

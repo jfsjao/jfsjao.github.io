@@ -14,17 +14,16 @@ import { useIsDesktopViewport } from '../../hooks/useIsDesktopViewport'
 interface DesktopProps {
   onLogout: () => void
   onPower: () => void
-  onReturn: () => void
 }
 
-export function Desktop({ onLogout, onPower, onReturn }: DesktopProps) {
+export function Desktop({ onLogout, onPower }: DesktopProps) {
   const windows = useWindowStore((state) => state.windows)
   const openWindow = useWindowStore((state) => state.openWindow)
   // Mobile XP (docs/next-prompt.md): launcher em grade abaixo de 768px, em vez
   // dos ícones soltos e arrastáveis do desktop livre.
   const isDesktop = useIsDesktopViewport()
   const didOpenReadme = useRef(false)
-  const didShowAresHint = useRef(false)
+  const isAresOpen = windows.some((window) => window.appId === 'projects')
   const [showXPNotification, setShowXPNotification] = useState(true)
   const [showAresHint, setShowAresHint] = useState(false)
 
@@ -50,16 +49,29 @@ export function Desktop({ onLogout, onPower, onReturn }: DesktopProps) {
     })
   }, [openWindow])
 
+  // Balão de boas-vindas some sozinho depois de ~1 minuto se ninguém mexer nele.
   useEffect(() => {
-    if (didShowAresHint.current) {
+    if (!showXPNotification) {
       return
     }
 
-    if (windows.some((window) => window.appId === 'projects')) {
-      didShowAresHint.current = true
-      setShowAresHint(true)
-    }
-  }, [windows])
+    const timer = window.setTimeout(() => setShowXPNotification(false), 60_000)
+    return () => window.clearTimeout(timer)
+  }, [showXPNotification])
+
+  // A dica do Ares acompanha a janela: aparece ao abrir, some ao fechar. Só um
+  // balão fica visível por vez — abrir o Ares antes do de boas-vindas sumir
+  // sozinho já fecha esse na hora.
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setShowAresHint(isAresOpen)
+      if (isAresOpen) {
+        setShowXPNotification(false)
+      }
+    }, 0)
+
+    return () => window.clearTimeout(timer)
+  }, [isAresOpen])
 
   return (
     <main
@@ -86,15 +98,14 @@ export function Desktop({ onLogout, onPower, onReturn }: DesktopProps) {
       ))}
 
       <XPNotification
-        visible={showXPNotification}
+        visible={showXPNotification && !isAresOpen}
         onClose={() => setShowXPNotification(false)}
       />
       <AresHintNotification visible={showAresHint} onClose={() => setShowAresHint(false)} />
       <Taskbar
         onLogout={onLogout}
         onPower={onPower}
-        onReturn={onReturn}
-        isNotificationOpen={showXPNotification}
+        isNotificationOpen={showXPNotification && !isAresOpen}
         onNotificationToggle={() => setShowXPNotification((visible) => !visible)}
       />
     </main>

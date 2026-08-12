@@ -126,7 +126,7 @@ export function DesktopIcon({ app, isDesktop }: DesktopIconProps) {
           className="h-11 w-11 object-contain drop-shadow-[1px_2px_1px_rgba(0,0,0,0.45)]"
           draggable={false}
         />
-        <span className="max-w-[88px] px-[2px] text-center font-[Tahoma,'Segoe_UI',Arial,sans-serif] text-[12px] font-medium leading-[1.2] [text-shadow:1px_1px_2px_rgba(0,0,0,1)]">
+        <span className="max-w-[96px] px-[2px] text-center font-xp text-[15px] font-medium leading-[1.2] [text-shadow:1px_1px_2px_rgba(0,0,0,1)]">
           {app.label}
         </span>
       </button>
@@ -148,7 +148,7 @@ export function DesktopIcon({ app, isDesktop }: DesktopIconProps) {
         className="h-11 w-11 object-contain drop-shadow-[1px_2px_1px_rgba(0,0,0,0.45)]"
         draggable={false}
       />
-      <span className="max-w-[88px] px-[2px] text-center font-[Tahoma,'Segoe_UI',Arial,sans-serif] text-[12px] font-medium leading-[1.2] [text-shadow:1px_1px_2px_rgba(0,0,0,1)] group-focus:bg-xp-blue">
+      <span className="max-w-[96px] px-[2px] text-center font-xp text-[15px] font-medium leading-[1.2] [text-shadow:1px_1px_2px_rgba(0,0,0,1)] group-focus:bg-xp-blue">
         {app.label}
       </span>
     </button>

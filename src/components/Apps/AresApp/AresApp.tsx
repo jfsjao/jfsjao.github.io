@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import goIcon from '../../../assets/icons/icon__go.png'
+import musicIcon from '../../../assets/icons/icon__music.png'
 import searchIcon from '../../../assets/icons/icon__search--large.png'
 import { PROJECTS } from '../../../data/portfolio.data'
 import { AresItem } from './AresItem'
@@ -164,7 +165,7 @@ export function AresApp() {
             {selectedProject ? (
               <div className="flex items-start gap-3">
                 <img
-                  src={goIcon}
+                  src={musicIcon}
                   alt=""
                   width={32}
                   height={32}
@@ -172,6 +173,19 @@ export function AresApp() {
                   draggable={false}
                 />
                 <div className="min-w-0 flex-1">
+                  {selectedProject.images && selectedProject.images.length > 0 && (
+                    <div className="mb-2 flex gap-1.5">
+                      {selectedProject.images.map((src) => (
+                        <img
+                          key={src}
+                          src={src}
+                          alt=""
+                          className="h-12 w-16 rounded-[2px] border border-[#8aa7cf] object-cover"
+                          loading="lazy"
+                        />
+                      ))}
+                    </div>
+                  )}
                   <p className="truncate font-bold">{selectedProject.name}</p>
                   <p className="mt-0.5 text-[14px] text-[#3a5a7a]">{selectedProject.description}</p>
                   <div className="mt-2 flex flex-wrap gap-1">
@@ -186,14 +200,16 @@ export function AresApp() {
                   </div>
                 </div>
                 <div className="flex shrink-0 flex-col gap-1">
-                  <a
-                    href={selectedProject.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="h-8 rounded-[2px] border border-[#8aa7cf] bg-white px-3 text-center text-[14px] leading-8 hover:bg-[#f7fbff]"
-                  >
-                    Abrir projeto
-                  </a>
+                  {selectedProject.url && (
+                    <a
+                      href={selectedProject.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="h-8 rounded-[2px] border border-[#8aa7cf] bg-white px-3 text-center text-[14px] leading-8 hover:bg-[#f7fbff]"
+                    >
+                      {selectedProject.codeOnly ? 'Abrir código' : 'Abrir projeto'}
+                    </a>
+                  )}
                   {selectedProject.demo && (
                     <a
                       href={selectedProject.demo}

@@ -129,7 +129,7 @@ export function BootScreen({ onStart, onShutdown, initialStage = 'bios' }: BootS
               initial={reduceMotion ? false : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15, duration: 0.45 }}
-              className="text-5xl font-bold italic tracking-tight text-white [text-shadow:2px_2px_1px_rgba(0,0,0,0.35)] sm:text-7xl"
+              className="font-[Tahoma,'Segoe_UI',Arial,sans-serif] text-5xl font-bold italic tracking-tight text-white [text-shadow:2px_2px_1px_rgba(0,0,0,0.35)] sm:text-7xl"
             >
               Bem-vindo
             </motion.p>
@@ -151,7 +151,7 @@ export function BootScreen({ onStart, onShutdown, initialStage = 'bios' }: BootS
                   <motion.p
                     initial={reduceMotion ? false : { opacity: 0, x: -14 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="text-4xl font-bold italic [text-shadow:1px_2px_1px_rgba(0,0,0,0.28)] sm:text-5xl"
+                    className="font-[Tahoma,'Segoe_UI',Arial,sans-serif] text-4xl font-bold italic [text-shadow:1px_2px_1px_rgba(0,0,0,0.28)] sm:text-5xl"
                   >
                     Bem-vindo
                   </motion.p>

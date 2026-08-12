@@ -2,15 +2,20 @@ import { useEffect, useState } from 'react'
 import { BootScreen } from '../../components/Boot/BootScreen'
 import { Desktop } from '../../components/Desktop/Desktop'
 import { useWindowStore } from '../../store/windowStore'
+import { useSound } from '../../hooks/useSound'
 import logOutIcon from '../../assets/icons/icon__log_out--large.png'
 import restartIcon from '../../assets/icons/icon__restart--large.png'
 import shutDownIcon from '../../assets/icons/icon__shut_down--large.png'
+import startupSound from '../../assets/sounds/audio__startup.wav'
+import shutdownSound from '../../assets/sounds/audio__shutdown.wav'
+import windowsLogo from '../../assets/icons/logo__windows_xp.png'
 
 interface WindowsPortfolioProps {
   onReturn: () => void
 }
 
 type StartupStage = 'bios' | 'login'
+type ShutdownStage = 'loggingOff' | 'shuttingDown' | null
 
 const BOOT_SESSION_KEY = 'xpBootSeen'
 
@@ -20,21 +25,32 @@ export function WindowsPortfolio({ onReturn }: WindowsPortfolioProps) {
   )
   const [startupStage, setStartupStage] = useState<StartupStage>('bios')
   const [isPowerOpen, setIsPowerOpen] = useState(false)
-  const [isShuttingDown, setIsShuttingDown] = useState(false)
+  const [shutdownStage, setShutdownStage] = useState<ShutdownStage>(null)
   const resetWindows = useWindowStore((state) => state.resetWindows)
+  const playStartupSound = useSound(startupSound)
+  const playShutdownSound = useSound(shutdownSound)
 
   useEffect(() => {
-    if (!isShuttingDown) {
+    if (!shutdownStage) {
       return
     }
 
-    const timer = window.setTimeout(onReturn, 1400)
+    const timer = window.setTimeout(() => {
+      if (shutdownStage === 'loggingOff') {
+        setShutdownStage('shuttingDown')
+        return
+      }
+
+      onReturn()
+    }, shutdownStage === 'loggingOff' ? 1000 : 2400)
+
     return () => window.clearTimeout(timer)
-  }, [isShuttingDown, onReturn])
+  }, [shutdownStage, onReturn])
 
   const finishBoot = () => {
     window.sessionStorage.setItem(BOOT_SESSION_KEY, 'true')
     setIsBooting(false)
+    playStartupSound()
   }
 
   const handleLogout = () => {
@@ -55,13 +71,32 @@ export function WindowsPortfolio({ onReturn }: WindowsPortfolioProps) {
     resetWindows()
     window.sessionStorage.removeItem(BOOT_SESSION_KEY)
     setIsPowerOpen(false)
-    setIsShuttingDown(true)
+    setShutdownStage('loggingOff')
+    playShutdownSound()
   }
 
-  if (isShuttingDown) {
+  if (shutdownStage) {
     return (
-      <main className="flex min-h-[100dvh] items-center justify-center bg-black font-xp text-white">
-        <p className="text-xl font-bold">O Windows está sendo desligado…</p>
+      <main className="grid min-h-[100dvh] grid-rows-[clamp(70px,18vh,160px)_1fr_clamp(70px,18vh,160px)] bg-[#5a7edc] font-[Tahoma,'Segoe_UI',Arial,sans-serif] text-white">
+        <div className="border-b-[3px] border-[#94adf4] bg-[#28369f]" />
+        <div className="flex items-center justify-center bg-[radial-gradient(circle_at_center,#7594df_0%,#6685d2_48%,#5a78c5_100%)] px-6 text-center">
+          <div className="flex translate-x-4 flex-col items-center sm:translate-x-12">
+            <img
+              src={windowsLogo}
+              alt="Microsoft Windows XP"
+              width={272}
+              height={164}
+              className="h-auto w-[190px] sm:w-[220px]"
+              draggable={false}
+            />
+            <p className="mt-2 text-xl font-normal [text-shadow:1px_1px_1px_rgba(0,0,0,0.22)] sm:text-2xl">
+              {shutdownStage === 'loggingOff'
+                ? 'Fazendo logoff...'
+                : 'O Windows está sendo desligado...'}
+            </p>
+          </div>
+        </div>
+        <div className="border-t-[3px] border-[#e68a3c] bg-[#28369f]" />
       </main>
     )
   }
@@ -78,7 +113,7 @@ export function WindowsPortfolio({ onReturn }: WindowsPortfolioProps) {
 
   return (
     <div className="relative min-h-[100dvh]">
-      <Desktop onLogout={handleLogout} onPower={() => setIsPowerOpen(true)} onReturn={onReturn} />
+      <Desktop onLogout={handleLogout} onPower={() => setIsPowerOpen(true)} />
       {isPowerOpen && (
         <PowerDialog
           onCancel={() => setIsPowerOpen(false)}

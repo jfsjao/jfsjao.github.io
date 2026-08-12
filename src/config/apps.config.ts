@@ -11,7 +11,7 @@ const myComputerIcon = new URL('../assets/icons/icon__computer--large.png', impo
 export const DESKTOP_APPS: DesktopIconConfig[] = [
   {
     appId: 'notepad',
-    label: 'Leia-me.txt',
+    label: 'Bloco de Notas',
     icon: notepadIcon,
     defaultWidth: 560,
     defaultHeight: 390,
@@ -20,7 +20,7 @@ export const DESKTOP_APPS: DesktopIconConfig[] = [
   },
   {
     appId: 'word',
-    label: 'Sobre Mim.docx',
+    label: 'Word',
     icon: wordIcon, 
     defaultWidth: 700,
     defaultHeight: 500,

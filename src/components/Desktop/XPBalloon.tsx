@@ -18,7 +18,7 @@ export function XPBalloon({
   return (
     <aside
       aria-live="polite"
-      className={`absolute right-3 z-[9997] w-[min(330px,calc(100vw-24px))] rounded-[8px] border border-[#003c74] bg-[#ffffe1] px-3 pb-3 pt-2.5 font-[Tahoma,'Segoe_UI',Arial,sans-serif] text-[12px] leading-[1.4] text-black shadow-[2px_3px_5px_rgba(0,0,0,0.32)] ${className}`}
+      className={`absolute bottom-[42px] right-3 z-[9997] w-[min(350px,calc(100vw-24px))] rounded-[8px] border border-[#003c74] bg-[#ffffe1] px-3 pb-3 pt-2.5 font-xp text-[15px] leading-[1.4] text-black shadow-[2px_3px_5px_rgba(0,0,0,0.32)] ${className}`}
     >
       <div className="flex min-w-0 items-center gap-1.5 pr-6">
         <img src={icon} alt="" width={16} height={16} className="h-4 w-4 shrink-0" draggable={false} />

@@ -3,7 +3,6 @@ import { DESKTOP_APPS } from '../../config/apps.config'
 import { APP_TITLES, useWindowStore } from '../../store/windowStore'
 import controlPanelIcon from '../../assets/icons/icon__control_panel--large.png'
 import documentsIcon from '../../assets/icons/icon__documents--large.png'
-import homeIcon from '../../assets/icons/icon__home--large.png'
 import logOutIcon from '../../assets/icons/icon__log_out--large.png'
 import searchIcon from '../../assets/icons/icon__search--large.png'
 import shutDownIcon from '../../assets/icons/icon__shut_down--large.png'
@@ -15,10 +14,9 @@ interface StartMenuProps {
   onClose: () => void
   onLogout: () => void
   onPower: () => void
-  onReturn: () => void
 }
 
-export function StartMenu({ onClose, onLogout, onPower, onReturn }: StartMenuProps) {
+export function StartMenu({ onClose, onLogout, onPower }: StartMenuProps) {
   const openWindow = useWindowStore((state) => state.openWindow)
   const reduceMotion = useReducedMotion()
 
@@ -29,7 +27,7 @@ export function StartMenu({ onClose, onLogout, onPower, onReturn }: StartMenuPro
       exit={reduceMotion ? undefined : { opacity: 0, y: 18, scale: 0.97 }}
       transition={{ duration: 0.16, ease: 'easeOut' }}
       style={{ transformOrigin: 'bottom left' }}
-      className="absolute bottom-[30px] left-0 z-[9998] w-[min(420px,100vw)] overflow-hidden rounded-t-[7px] border border-[#0a246a] bg-xp-window-bg font-[Tahoma,'Segoe_UI',Arial,sans-serif] text-[12px] shadow-[3px_-3px_12px_rgba(0,0,0,0.35)]">
+      className="absolute bottom-[30px] left-0 z-[9998] w-[min(420px,100vw)] overflow-hidden rounded-t-[7px] border border-[#0a246a] bg-xp-window-bg font-xp text-[12px] shadow-[3px_-3px_12px_rgba(0,0,0,0.35)]">
       <div className="flex h-16 items-center gap-3 bg-[linear-gradient(180deg,#2f83f5,#0a4fbd)] px-4 text-white">
         <div className="h-11 w-11 rounded-[4px] border border-white/70 bg-white p-1 shadow-btn-xp">
           <img
@@ -53,7 +51,7 @@ export function StartMenu({ onClose, onLogout, onPower, onReturn }: StartMenuPro
             <button
               key={app.appId}
               type="button"
-              className="flex w-full items-center gap-2.5 rounded-[2px] p-2 text-left text-[12px] font-medium hover:bg-[#316ac5] hover:text-white"
+              className="flex w-full items-center gap-2.5 rounded-[2px] p-2 text-left text-[15px] font-medium hover:bg-[#316ac5] hover:text-white"
               onClick={() => {
                 openWindow({
                   appId: app.appId,
@@ -83,7 +81,7 @@ export function StartMenu({ onClose, onLogout, onPower, onReturn }: StartMenuPro
             <button
               key={label}
               type="button"
-              className="flex w-full items-center gap-2.5 rounded-[2px] p-2 text-left text-[12px] font-medium text-xp-blue-dark hover:bg-[#316ac5] hover:text-white"
+              className="flex w-full items-center gap-2.5 rounded-[2px] p-2 text-left text-[15px] font-medium text-xp-blue-dark hover:bg-[#316ac5] hover:text-white"
             >
               <img src={icon} alt="" className="h-6 w-6 object-contain" draggable={false} />
               <span>{label}</span>
@@ -103,17 +101,6 @@ export function StartMenu({ onClose, onLogout, onPower, onReturn }: StartMenuPro
         >
           <img src={logOutIcon} alt="" className="h-6 w-6" draggable={false} />
           Logoff
-        </button>
-        <button
-          type="button"
-          className="flex items-center gap-1 text-[12px] font-medium"
-          onClick={() => {
-            onClose()
-            onReturn()
-          }}
-        >
-          <img src={homeIcon} alt="" className="h-6 w-6" draggable={false} />
-          Portfólio
         </button>
         <button
           type="button"

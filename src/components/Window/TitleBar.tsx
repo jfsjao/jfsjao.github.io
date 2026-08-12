@@ -15,7 +15,7 @@ export function TitleBar({ onDragStart, windowState, isDesktop }: TitleBarProps)
 
   return (
     <header
-      className={`flex h-[27px] shrink-0 items-center gap-1 rounded-[4px_4px_0_0] px-[2px] font-[Tahoma] text-[14px] font-bold text-white ${
+      className={`flex h-[27px] shrink-0 items-center gap-1 rounded-[4px_4px_0_0] px-[2px] font-xp text-[14px] font-bold text-white ${
         windowState.isFocused ? 'xp-titlebar-active' : 'xp-titlebar-inactive'
       }`}
       onPointerDown={onDragStart}

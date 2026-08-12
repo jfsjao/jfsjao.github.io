@@ -9,7 +9,6 @@ import { StartMenu } from './StartMenu'
 interface TaskbarProps {
   onLogout: () => void
   onPower: () => void
-  onReturn: () => void
   isNotificationOpen: boolean
   onNotificationToggle: () => void
 }
@@ -17,7 +16,6 @@ interface TaskbarProps {
 export function Taskbar({
   onLogout,
   onPower,
-  onReturn,
   isNotificationOpen,
   onNotificationToggle,
 }: TaskbarProps) {
@@ -32,7 +30,6 @@ export function Taskbar({
             onClose={() => setIsStartOpen(false)}
             onLogout={onLogout}
             onPower={onPower}
-            onReturn={onReturn}
           />
         )}
       </AnimatePresence>

@@ -23,7 +23,7 @@ export function Clock({ isNotificationOpen, onNotificationToggle }: ClockProps) 
   }, [])
 
   return (
-    <div className="flex h-full w-[122px] items-center justify-center gap-1.5 border-l border-[#0a2e52] bg-[linear-gradient(180deg,#16aef0_3%,#168de8_16%,#0d8dea_90%,#095bc9_100%)] font-[Tahoma,'Segoe_UI',Arial,sans-serif] text-[13px] shadow-[inset_1px_0_1px_#22c4f4]">
+    <div className="flex h-full w-[122px] items-center justify-center gap-1.5 border-l border-[#0a2e52] bg-[linear-gradient(180deg,#16aef0_3%,#168de8_16%,#0d8dea_90%,#095bc9_100%)] font-xp text-[15px] shadow-[inset_1px_0_1px_#22c4f4]">
       <button
         type="button"
         className="flex h-full w-4 items-center justify-center text-xp-text-inv/80 transition-colors hover:bg-white/10 active:bg-black/10"

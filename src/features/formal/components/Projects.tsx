@@ -86,6 +86,19 @@ export function Projects() {
               className="flex w-[82vw] shrink-0 snap-start flex-col justify-between rounded-2xl border border-formal-border bg-formal-surface p-7 sm:w-[420px]"
             >
               <div>
+                {project.images && project.images.length > 0 && (
+                  <div className="mb-5 grid grid-cols-2 gap-2 overflow-hidden rounded-xl">
+                    {project.images.map((src) => (
+                      <img
+                        key={src}
+                        src={src}
+                        alt=""
+                        className="h-24 w-full rounded-lg object-cover"
+                        loading="lazy"
+                      />
+                    ))}
+                  </div>
+                )}
                 <div className="flex items-center justify-between">
                   <span className="font-meta text-xs text-formal-muted">{String(index + 1).padStart(2, '0')}</span>
                   <span
@@ -117,6 +130,12 @@ export function Projects() {
                     </li>
                   ))}
                 </ul>
+
+                {project.fundamentals && project.fundamentals.length > 0 && (
+                  <p className="mt-3 font-meta text-xs italic text-formal-muted">
+                    Fundamento: {project.fundamentals.join(', ')}
+                  </p>
+                )}
               </div>
 
               <div className="mt-6 flex gap-5 border-t border-formal-border pt-4">
@@ -127,7 +146,7 @@ export function Projects() {
                     rel="noreferrer noopener"
                     className="font-meta text-xs font-semibold uppercase tracking-wide text-formal-ink underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-formal-blue"
                   >
-                    Abrir projeto ↗
+                    {project.codeOnly ? 'Abrir código ↗' : 'Abrir projeto ↗'}
                   </a>
                 )}
                 {project.demo && (

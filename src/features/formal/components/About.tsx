@@ -35,7 +35,7 @@ export function About() {
             </div>
             <div>
               <dt className="font-meta text-xs uppercase tracking-wide text-formal-muted">Formação</dt>
-              <dd className="mt-1 font-display text-lg text-formal-ink">Sistemas de Informação · UFU</dd>
+              <dd className="mt-1 font-display text-lg text-formal-ink">Sistemas de Informação · UFU (2022–2026)</dd>
             </div>
           </dl>
         </div>

@@ -1,27 +1,52 @@
+import faunaCow from '../assets/img-project-facul/Imagem-gado(yolov8).jpeg'
+import faunaBird from '../assets/img-project-facul/Imagem-passaro(yolov8).jpeg'
+
+interface Project {
+  id: number
+  name: string
+  description: string
+  tech: string[]
+  size: string
+  seeds: number
+  peers: number
+  url: string
+  demo: string
+  status: 'complete' | 'progress'
+  images?: string[]
+  /** true = `url` aponta pro código-fonte (sem deploy ao vivo), muda o label do link pra "Abrir código". */
+  codeOnly?: boolean
+  /** Conceitos/paradigmas de fundamentação usados no projeto (ex.: POO), à parte do stack técnico. */
+  fundamentals?: string[]
+}
+
 export const ABOUT = {
   name: 'João Felipe Silva',
   role: 'Desenvolvedor Full Stack',
-  bio: `Desenvolvedor Full Stack com experiência em Angular, C#, Python e SQL. 
-Formado em Sistemas de Informação pela UFU. Já trabalhei com sustentação 
-de sistemas financeiros, dados com Oracle SQL, e pesquisa científica com IA 
-e visão computacional. Professor voluntário de desenvolvimento web.`,
+  bio: `Desenvolvedor Full Stack formado em Sistemas de Informação pela UFU, com
+experiência em TypeScript, Node.js, Angular, C#, python e SQL. Atua como freelancer
+desenvolvendo e mantendo aplicações web de ponta a ponta, com passagem no profissonal, atuando em diversas areas como educação e financeira.
+Também tem pesquisa científica em IA e visão computacional, e foi professor
+voluntário de desenvolvimento web.`,
   photo: '/assets/foto.jpg',
   location: 'São Carlos, SP',
   available: true,
 }
 
-export const PROJECTS = [
+export const PROJECTS: Project[] = [
   {
     id: 1,
     name: 'Classificação de Fauna com IA.zip',
-    description: 'Comparativo entre LLMs e YOLOv8 para classificação de imagens — Iniciação Científica UFU',
+    description:
+      'Avaliação de modelos de IA (GPT-4, YOLOv8, Gemini) para classificação automatizada de fauna em imagens, comparando precisão, recall e F1-score — Iniciação Científica UFU',
     tech: ['Python', 'YOLOv8', 'TensorFlow', 'GPT-4', 'Gemini API'],
     size: '3.8 MB',
     seeds: 98,
     peers: 12,
-    url: 'https://github.com/joaofelipe0143',
+    url: '',
     demo: '',
-    status: 'complete' as const,
+    status: 'complete',
+    images: [faunaCow, faunaBird],
+    fundamentals: ['Aprendizado de Máquina'],
   },
   {
     id: 2,
@@ -31,9 +56,11 @@ export const PROJECTS = [
     size: '1.2 MB',
     seeds: 256,
     peers: 41,
-    url: 'https://github.com/joaofelipe0143',
+    url: 'https://github.com/jfsjao/jfsjao.github.io',
     demo: '',
     status: 'complete' as const,
+    codeOnly: true,
+    fundamentals: ['Componentização'],
   },
   {
     id: 3,
@@ -45,8 +72,9 @@ export const PROJECTS = [
     seeds: 34,
     peers: 7,
     url: 'https://allincreator.com/home',
-    demo: 'https://github.com/jfsjao/All-In-Creator',
-    status: 'progress' as const,
+    demo: '',
+    status: 'complete' as const,
+    fundamentals: ['POO'],
   },
   {
     id: 4,
@@ -60,6 +88,7 @@ export const PROJECTS = [
     url: 'https://mid-cardapio.onrender.com/',
     demo: 'https://github.com/jfsjao/Mid-Cardapio',
     status: 'progress' as const,
+    fundamentals: ['Mobile-first'],
   },
   {
     id: 5,
@@ -71,8 +100,9 @@ export const PROJECTS = [
     seeds: 11,
     peers: 2,
     url: 'https://polimata-diagnostico.onrender.com/',
-    demo: 'https://github.com/jfsjao/finance-diagnostic',
+    demo: '',
     status: 'progress' as const,
+    fundamentals: ['Monorepo'],
   },
   {
     id: 6,
@@ -86,6 +116,8 @@ export const PROJECTS = [
     url: 'https://github.com/jfsjao/auth-api',
     demo: '',
     status: 'progress' as const,
+    codeOnly: true,
+    fundamentals: ['POO'],
   },
 ]
 
@@ -94,9 +126,11 @@ export const SKILLS = [
   { name: 'TypeScript / JavaScript', level: 80 },
   { name: 'Python', level: 75 },
   { name: 'C# / .NET', level: 70 },
+  { name: 'Node.js', level: 35 },
   { name: 'SQL (Oracle, MySQL, PostgreSQL)', level: 80 },
   { name: 'Git / CI-CD', level: 75 },
-  { name: 'Docker / Linux', level: 65 },
+  { name: 'Docker', level: 65 },
+  { name: 'Linux', level: 65 },
   { name: 'React', level: 60 },
 ]
 
@@ -104,7 +138,6 @@ export const CONTACTS = [
   { label: 'GitHub', url: 'https://github.com/jfsjao', icon: 'github' },
   { label: 'LinkedIn', url: 'https://www.linkedin.com/in/joao-silva-jfs', icon: 'linkedin' },
   { label: 'Email', url: 'mailto:joaofelipe0143@gmail.com', icon: 'mail' },
-  { label: 'WhatsApp', url: 'https://wa.me/5516992950014', icon: 'phone' },
 ]
 
 export const MSN_CONTACTS = [
@@ -113,5 +146,7 @@ export const MSN_CONTACTS = [
   { name: 'SQL Master 🟢', status: 'online', message: 'Oracle, MySQL, PostgreSQL' },
   { name: 'C# Developer 🟢', status: 'online', message: 'sistemas financeiros' },
   { name: 'React Learner 🟡', status: 'away', message: 'em evolução...' },
+  { name: 'Node.js Newbie 🟡', status: 'away', message: 'aprendendo backend...' },
   { name: 'Docker 🟡', status: 'away', message: 'containerizando tudo' },
+  { name: 'Linux User 🟢', status: 'online', message: 'terminal é vida' },
 ]

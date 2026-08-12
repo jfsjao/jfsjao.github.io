@@ -4,14 +4,15 @@ import { SectionHeading } from './SectionHeading'
 function levelLabel(level: number): string {
   if (level >= 80) return 'Avançado'
   if (level >= 65) return 'Intermediário'
-  return 'Em evolução'
+  if (level >= 40) return 'Em evolução'
+  return 'Aprendendo'
 }
 
 const CATEGORIES: Array<{ label: string; match: (name: string) => boolean }> = [
   { label: 'Front-end', match: (name) => /Angular|TypeScript|React/.test(name) },
-  { label: 'Back-end', match: (name) => /Python|C#/.test(name) },
+  { label: 'Back-end', match: (name) => /Python|C#|Node\.js/.test(name) },
   { label: 'Dados', match: (name) => /SQL/.test(name) },
-  { label: 'DevOps & Ferramentas', match: (name) => /Git|Docker/.test(name) },
+  { label: 'DevOps & Ferramentas', match: (name) => /Git|Docker|Linux/.test(name) },
 ]
 
 export function Skills() {

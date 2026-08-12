@@ -58,8 +58,8 @@ export function Hero() {
         </h1>
 
         <p data-hero-lead className="mt-8 max-w-[56ch] text-pretty font-body text-lg leading-8 text-formal-muted">
-          Experiência com Angular, C#, Python, SQL, dados e visão computacional — do backend de sistemas
-          financeiros à pesquisa aplicada com IA.
+          Experiência com TypeScript, Node.js, Angular, C# e SQL — de sistemas financeiros corporativos a
+          produtos web em produção, hoje como freelancer full stack.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">

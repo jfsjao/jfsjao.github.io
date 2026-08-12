@@ -16,6 +16,7 @@ export function AresItem({ index, project, isSelected, onSelect }: AresItemProps
     : 'documento'
 
   const openProject = () => {
+    if (!project.url) return
     window.open(project.url, '_blank', 'noreferrer')
   }
 

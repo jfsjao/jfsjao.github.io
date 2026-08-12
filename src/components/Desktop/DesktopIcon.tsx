@@ -101,7 +101,7 @@ export function DesktopIcon({ app, isDesktop }: DesktopIconProps) {
     handleOpen()
   }
 
-  // Mobile XP (docs/next-prompt.md): launcher em grade — sem posição livre,
+  // Mobile XP (docs/next-prompt.md): launcher em grade, sem posição livre,
   // sem drag, um toque abre direto (nada de esperar um segundo toque).
   if (!isDesktop) {
     return (

@@ -37,7 +37,7 @@ export const PROJECTS: Project[] = [
     id: 1,
     name: 'Classificação de Fauna com IA.zip',
     description:
-      'Avaliação de modelos de IA (GPT-4, YOLOv8, Gemini) para classificação automatizada de fauna em imagens, comparando precisão, recall e F1-score — Iniciação Científica UFU',
+      'Avaliação de modelos de IA (GPT-4, YOLOv8, Gemini) para classificação automatizada de fauna em imagens, comparando precisão, recall e F1-score. Iniciação Científica UFU',
     tech: ['Python', 'YOLOv8', 'TensorFlow', 'GPT-4', 'Gemini API'],
     size: '3.8 MB',
     seeds: 98,
@@ -51,7 +51,7 @@ export const PROJECTS: Project[] = [
   {
     id: 2,
     name: 'Portfolio XP.exe',
-    description: 'Portfólio temático Windows XP — React + TypeScript + Framer Motion',
+    description: 'Portfólio temático Windows XP com React, TypeScript e Framer Motion',
     tech: ['React', 'TypeScript', 'Tailwind', 'Framer Motion'],
     size: '1.2 MB',
     seeds: 256,
@@ -66,7 +66,7 @@ export const PROJECTS: Project[] = [
     id: 3,
     name: 'All In Creator.exe',
     description:
-      'Plataforma full stack de venda de packs digitais — frontend Angular, API própria, pagamentos e autenticação',
+      'Plataforma full stack de venda de packs digitais com frontend Angular, API própria, pagamentos e autenticação',
     tech: ['Angular 20', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL', 'Firebase'],
     size: '24.6 MB',
     seeds: 34,
@@ -80,7 +80,7 @@ export const PROJECTS: Project[] = [
     id: 4,
     name: 'Mid Cardápio.exe',
     description:
-      'Cardápio digital mobile-first da MID Conveniência — o cliente monta o pedido e envia direto pelo WhatsApp',
+      'Cardápio digital mobile-first da MID Conveniência. O cliente monta o pedido e envia direto pelo WhatsApp',
     tech: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'GSAP'],
     size: '4.1 MB',
     seeds: 19,
@@ -94,7 +94,7 @@ export const PROJECTS: Project[] = [
     id: 5,
     name: 'Diagnóstico Financeiro.exe',
     description:
-      'Diagnóstico financeiro por QR Code, personalizado por parceiro — monorepo React + TypeScript + Vite',
+      'Diagnóstico financeiro por QR Code, personalizado por parceiro, em monorepo React + TypeScript + Vite',
     tech: ['React', 'TypeScript', 'Vite'],
     size: '3.5 MB',
     seeds: 11,
@@ -108,7 +108,7 @@ export const PROJECTS: Project[] = [
     id: 6,
     name: 'Auth API.exe',
     description:
-      'API de autenticação modular em NestJS — JWT, refresh tokens com rotação, roles e permissões, pronta para reuso',
+      'API de autenticação modular em NestJS com JWT, refresh tokens com rotação, roles e permissões, pronta para reuso',
     tech: ['NestJS', 'TypeScript', 'PostgreSQL', 'Redis', 'Docker', 'JWT'],
     size: '6.8 MB',
     seeds: 27,

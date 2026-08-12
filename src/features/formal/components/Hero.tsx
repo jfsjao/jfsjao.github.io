@@ -44,21 +44,21 @@ export function Hero() {
           <p data-hero-meta className="text-right font-meta text-xs uppercase tracking-wide text-formal-muted">
             {ABOUT.role} · Dados &amp; IA
             <br />
-            {ABOUT.location} · remoto
+            Remoto
           </p>
         </div>
 
         <h1 className="max-w-5xl font-display text-[13vw] font-medium leading-[0.98] tracking-[-0.02em] text-formal-ink sm:text-6xl lg:text-[5.5rem]">
           <span data-hero-title-line className="block overflow-hidden">
-            Tecnologia aplicada
+            Desenvolvedor Fullstack
           </span>
           <span data-hero-title-line className="block overflow-hidden italic text-formal-blue">
-            a problemas reais.
+            João Felipe
           </span>
         </h1>
 
         <p data-hero-lead className="mt-8 max-w-[56ch] text-pretty font-body text-lg leading-8 text-formal-muted">
-          Experiência com TypeScript, Node.js, Angular, C# e SQL — de sistemas financeiros corporativos a
+          Experiência com TypeScript, Node.js, Angular, C# e SQL, de sistemas financeiros corporativos a
           produtos web em produção, hoje como freelancer full stack.
         </p>
 

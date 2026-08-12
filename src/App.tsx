@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react'
 import { FormalPortfolio } from './features/formal/FormalPortfolio'
 import { useAppMode } from './app/useAppMode'
+import { useFavicon } from './app/useFavicon'
 
 const WindowsPortfolio = lazy(() =>
   import('./features/windows/WindowsPortfolio').then((module) => ({
@@ -10,6 +11,7 @@ const WindowsPortfolio = lazy(() =>
 
 function App() {
   const { mode, setMode } = useAppMode()
+  useFavicon(mode)
 
   useEffect(() => {
     document.documentElement.dataset.mode = mode

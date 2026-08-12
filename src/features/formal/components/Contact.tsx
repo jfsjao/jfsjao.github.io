@@ -20,7 +20,7 @@ export function Contact() {
                   className={`h-2 w-2 rounded-full ${ABOUT.available ? 'bg-formal-green' : 'bg-white/40'}`}
                   aria-hidden="true"
                 />
-                {ABOUT.available ? 'Disponível para novos projetos' : 'Indisponível no momento'} · {ABOUT.location}
+                {ABOUT.available ? 'Disponível para novos projetos' : 'Indisponível no momento'}
               </p>
             </div>
 

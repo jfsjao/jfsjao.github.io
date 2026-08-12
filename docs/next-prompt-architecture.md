@@ -1,4 +1,4 @@
-# Prompt mestre — Reestruturação do Portfólio Formal + Modo Windows XP
+# Prompt mestre: Reestruturação do Portfólio Formal + Modo Windows XP
 
 > Referência técnica adicionada após esta auditoria:
 > `docs/react-xp-reference.md`.

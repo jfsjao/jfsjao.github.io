@@ -8,7 +8,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger)
 /**
  * Revela os filhos diretos com `data-reveal` de uma seção com um fade+subida
  * curto ao entrar na viewport. Respeita `prefers-reduced-motion` via
- * gsap.matchMedia — usuários com a preferência ativa recebem apenas um fade
+ * gsap.matchMedia. Usuários com a preferência ativa recebem apenas um fade
  * instantâneo, sem deslocamento.
  */
 export function useSectionReveal<T extends HTMLElement>() {

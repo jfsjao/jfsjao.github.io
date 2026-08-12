@@ -28,7 +28,6 @@ export function Footer({ onOpenWindows }: FooterProps) {
             Modo Windows XP
           </a>
         </div>
-        <p>{ABOUT.location}</p>
       </div>
     </footer>
   )

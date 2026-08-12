@@ -8,16 +8,16 @@ export function Education() {
 
         <div className="grid gap-px overflow-hidden rounded-2xl border border-formal-border bg-formal-border sm:grid-cols-3">
           <div data-reveal className="bg-formal-surface p-8">
-            <p className="font-meta text-xs uppercase tracking-wide text-formal-muted">Graduação · 2022–2026</p>
+            <p className="font-meta text-xs uppercase tracking-wide text-formal-muted">Graduação · 2022 a 2026</p>
             <h3 className="mt-2 font-display text-xl font-medium tracking-[-0.01em] text-formal-ink">
               Sistemas de Informação
             </h3>
             <p className="mt-1 font-body text-sm text-formal-muted">
-              Universidade Federal de Uberlândia (UFU) — ênfase em Engenharia de Software, Bancos de Dados e IA.
+              Universidade Federal de Uberlândia (UFU), com ênfase em Engenharia de Software, Bancos de Dados e IA.
             </p>
           </div>
           <div data-reveal className="bg-formal-surface p-8">
-            <p className="font-meta text-xs uppercase tracking-wide text-formal-muted">Técnico · 2018–2021</p>
+            <p className="font-meta text-xs uppercase tracking-wide text-formal-muted">Técnico · 2018 a 2021</p>
             <h3 className="mt-2 font-display text-xl font-medium tracking-[-0.01em] text-formal-ink">
               Eletroeletrônica e Usinagem
             </h3>
@@ -29,7 +29,7 @@ export function Education() {
               Professor de desenvolvimento web
             </h3>
             <p className="mt-1 font-body text-sm text-formal-muted">
-              UFU — aulas de lógica de programação, HTML, CSS e JavaScript.
+              UFU, com aulas de lógica de programação, HTML, CSS e JavaScript.
             </p>
           </div>
         </div>

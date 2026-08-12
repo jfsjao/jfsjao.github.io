@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-// Mirrors Tailwind's default `md` breakpoint (768px) — see docs/next-prompt.md
+// Mirrors Tailwind's default `md` breakpoint (768px). See docs/next-prompt.md
 // "Mobile XP": below 768px the XP shell runs in single-window, no-drag mode;
 // at or above it, the free desktop (drag, resize, multiple windows) applies.
 const DESKTOP_QUERY = '(min-width: 768px)'

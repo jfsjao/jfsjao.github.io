@@ -16,8 +16,8 @@ const STATUS_LABEL: Record<string, string> = {
 /**
  * Em telas grandes e sem prefers-reduced-motion, a seção fixa a viewport e
  * transforma o scroll vertical em deslocamento horizontal dos cards (padrão
- * de galeria "scrollytelling"). Em qualquer outro caso — mobile, tablet ou
- * reduced motion — os cards ficam em um carrossel com scroll nativo e
+ * de galeria "scrollytelling"). Em qualquer outro caso, mobile, tablet ou
+ * reduced motion, os cards ficam em um carrossel com scroll nativo e
  * scroll-snap, sem nenhum JS de pin envolvido.
  */
 export function Projects() {

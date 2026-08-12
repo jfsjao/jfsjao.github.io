@@ -19,9 +19,9 @@ export function Navbar({ onOpenWindows }: NavbarProps) {
     <header className="sticky top-0 z-40 border-b border-formal-border/70 bg-formal-bg/95 backdrop-blur-sm">
       <nav
         aria-label="Navegação principal"
-        className="mx-auto flex h-16 max-w-7xl items-center justify-end gap-4 px-5 md:h-[76px] md:px-8 lg:justify-between"
+        className="mx-auto flex h-16 max-w-7xl items-center justify-end gap-4 px-5 md:h-[76px] md:px-8 lg:grid lg:grid-cols-[1fr_auto_1fr]"
       >
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul className="hidden items-center gap-1 lg:col-start-2 lg:flex">
           {LINKS.map((link) => (
             <li key={link.href}>
               <a
@@ -34,7 +34,7 @@ export function Navbar({ onOpenWindows }: NavbarProps) {
           ))}
         </ul>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 lg:col-start-3 lg:justify-self-end">
           <span className="hidden items-center gap-1.5 rounded-full border border-formal-border bg-formal-surface px-3 py-1.5 font-meta text-xs text-formal-muted sm:flex">
             <span className="relative flex h-2 w-2" aria-hidden="true">
               {ABOUT.available && (

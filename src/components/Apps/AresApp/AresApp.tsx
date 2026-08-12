@@ -16,6 +16,8 @@ export function AresApp() {
     const normalizedQuery = query.trim().toLocaleLowerCase('pt-BR')
 
     return PROJECTS.filter((project) => {
+      if (project.hidden) return false
+
       const searchable = [project.name, project.description, ...project.tech]
         .join(' ')
         .toLocaleLowerCase('pt-BR')

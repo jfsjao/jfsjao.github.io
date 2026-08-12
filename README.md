@@ -1,109 +1,94 @@
-# Portifolio - Windows XP
+# Portfólio — João Felipe Silva
 
-## Referência técnica
+Portfólio pessoal com duas experiências conectadas:
 
-O modo Windows XP usa
-[`cyanoxide/react-xp`](https://github.com/cyanoxide/react-xp) como benchmark de
-arquitetura e comportamento.
+- **Portfólio formal** (`/`): landing page single-page voltada a recrutadores —
+  sobre, focos de atuação, experiência, projetos, skills, formação e contato.
+- **Modo Windows XP** (`/?mode=windows`): o mesmo conteúdo em forma de desktop
+  interativo nostálgico, com boot, login, taskbar, Menu Iniciar e janelas.
 
-Análise, diferenças e limites de reutilização:
-[`docs/react-xp-reference.md`](docs/react-xp-reference.md).
+Os dois modos compartilham a mesma fonte de conteúdo
+(`src/data/portfolio.data.ts`), então nada é duplicado ou diverge entre eles.
+A troca de modo é feita por query string, sem recarregar a página, e
+preserva o histórico do navegador (`history.pushState` / `popstate`).
 
-Código e assets externos não foram copiados. Nenhum arquivo de licença foi
-encontrado no commit analisado.
+## Modo Windows XP
 
-Portfolio pessoal inspirado no Windows XP, feito como uma experiencia de desktop interativo no navegador.
+Referência técnica de arquitetura e comportamento:
+[`cyanoxide/react-xp`](https://github.com/cyanoxide/react-xp) (benchmark,
+código não copiado — ver [`docs/react-xp-reference.md`](docs/react-xp-reference.md)).
 
-A ideia e transformar secoes comuns de um portfolio em "programas" classicos: o usuario entra em um desktop com wallpaper, icones, barra de tarefas e janelas que podem ser abertas, focadas, minimizadas e maximizadas.
+A ideia é transformar seções comuns de um portfólio em "programas" clássicos.
+O usuário passa pelo boot e tela de login do XP e chega a um desktop com
+wallpaper, ícones, barra de tarefas e janelas que podem ser abertas,
+focadas, arrastadas, redimensionadas, minimizadas e maximizadas — com um
+launcher em grade e janela cheia em telas menores que 768px.
 
-## Ideia
+Apps disponíveis:
 
-Em vez de uma pagina tradicional com blocos de texto, o portfolio funciona como um mini sistema operacional:
+- `Leia-me.txt` — Bloco de Notas com a história do portfólio.
+- `Sobre Mim.docx` — documento estilo Word 2003 com apresentação e bio.
+- `Ares Galaxy` — lista de projetos pesquisável, com filtro por tipo.
+- `MSN Messenger` — contatos e disponibilidade.
+- `Paint` — skills desenhadas à mão em um canvas.
+- `Meu Computador` — links externos (GitHub, LinkedIn, e-mail).
+- `Winamp` — easter egg visual, sem áudio funcional nesta entrega.
 
-- `Sobre Mim.doc` abre um documento estilo Word 2003 com apresentacao e curriculo.
-- `Projetos` abre uma interface inspirada no Ares Galaxy com lista de projetos.
-- `MSN Messenger` vira a area de contato.
-- `Winamp` representa personalidade, musica ou detalhe visual divertido.
-- `Skills.bmp` mostra habilidades em uma interface inspirada no Paint.
-- `Meu Computador` concentra links externos como GitHub, LinkedIn e email.
-
-O objetivo e manter nostalgia e usabilidade juntas: visual de Windows XP, mas construido com tecnologias atuais.
+O favicon da aba troca dinamicamente entre os dois modos.
 
 ## Stack
 
-- React 18
-- TypeScript
+- React 18 + TypeScript
 - Vite
 - Tailwind CSS
-- Zustand
-- Framer Motion
-- Howler
-- Lucide React
-
-## Status atual
-
-Base inicial criada:
-
-- boot screen estilo Windows XP
-- desktop com wallpaper CSS inspirado no Bliss
-- icones de apps
-- taskbar com botao iniciar e relogio
-- store global de janelas com Zustand
-- janelas com foco, minimizar, maximizar, fechar e drag pela titlebar
-- apps iniciais em formato stub para evoluir nas proximas fases
-
-Ainda falta polir os apps, trocar icones temporarios por assets XP, adicionar sons, criar menu iniciar completo e finalizar conteudo real do portfolio.
+- Zustand (store das janelas)
+- Framer Motion (boot, login, Menu Iniciar)
+- GSAP + ScrollTrigger (reveals e scrollytelling do portfólio formal)
+- Howler (dependência disponível para áudio, não usada nesta entrega)
 
 ## Rodando localmente
 
-Instale as dependencias:
-
 ```bash
-npm.cmd install
+npm install
+npm run dev
 ```
 
-Rode o servidor de desenvolvimento:
+Build de produção:
 
 ```bash
-npm.cmd run dev
+npm run build
 ```
 
-Build de producao:
+Lint e checagem de tipos:
 
 ```bash
-npm.cmd run build
+npm run lint
+npx tsc -b --noEmit
 ```
 
-Lint:
+## Deploy
 
-```bash
-npm.cmd run lint
-```
-
-> No Windows/PowerShell, este projeto usa `npm.cmd` para evitar bloqueio de execution policy do `npm.ps1`.
+Pipeline de CI/CD em `.github/workflows` builda e publica no GitHub Pages a
+cada push em `main`.
 
 ## Estrutura principal
 
 ```txt
 src/
+  app/            # seleção de modo (formal/windows) e favicon dinâmico
+  features/
+    formal/       # portfólio formal (seções, hooks de reveal, conteúdo editorial)
+    windows/      # shell do modo Windows XP
   components/
-    Boot/
-    Desktop/
-    Taskbar/
-    Window/
-    Apps/
-  config/
-  data/
+    Boot/         # boot e login do XP
+    Desktop/      # desktop, ícones, notificações
+    Taskbar/      # taskbar e Menu Iniciar
+    Window/       # janela genérica (drag, resize, foco)
+    Apps/         # cada "programa" do XP
+  config/         # apps e layout do desktop
+  data/           # fonte única de conteúdo (ABOUT, PROJECTS, SKILLS, CONTACTS)
   hooks/
-  store/
+  store/          # Zustand — estado global das janelas
   types/
   assets/
 ```
-
-## Proximas fases
-
-1. Melhorar visual do desktop com wallpaper e icones reais.
-2. Completar comportamento das janelas, incluindo resize real.
-3. Desenvolver cada app com conteudo final.
-4. Adicionar sons, menu iniciar e pequenos detalhes de imersao.
-5. Preparar SEO, og:image e deploy.

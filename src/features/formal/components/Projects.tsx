@@ -79,7 +79,7 @@ export function Projects() {
 
       <div ref={wrapRef} className="flex items-center overflow-x-auto snap-x snap-mandatory lg:min-h-[92dvh]">
         <div ref={trackRef} className="flex gap-6 px-5 pb-16 pt-2 md:px-8 lg:pb-0">
-          {PROJECTS.map((project, index) => (
+          {PROJECTS.filter((project) => !project.hidden).map((project, index) => (
             <article
               key={project.id}
               data-reveal

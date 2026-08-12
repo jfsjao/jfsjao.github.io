@@ -6,7 +6,7 @@ export function WinampApp() {
         <span>00:00</span>
       </div>
       <div className="mb-3 border border-[#5d5d83] bg-black p-2">
-        <p>Portfolio XP - track 01</p>
+        <p>Portfólio XP - faixa 01</p>
       </div>
       <div className="flex gap-1">
         {['<<', '>', '||', '[]', '>>'].map((label) => (

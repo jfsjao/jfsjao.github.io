@@ -34,14 +34,14 @@ export function Contact() {
             )}
           </div>
 
-          <ul className="grid border-t border-white/10 sm:grid-cols-4">
+          <ul className="grid border-t border-white/10 sm:grid-cols-3">
             {CONTACTS.map((contact) => (
               <li key={contact.label} className="border-t border-white/10 sm:border-l sm:border-t-0 first:border-l-0">
                 <a
                   href={contact.url}
                   target={contact.url.startsWith('http') ? '_blank' : undefined}
                   rel={contact.url.startsWith('http') ? 'noreferrer noopener' : undefined}
-                  className="flex items-center justify-between px-6 py-4 font-meta text-xs font-semibold uppercase tracking-wide text-white/80 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline focus-visible:-outline-offset-2 focus-visible:outline-white"
+                  className="flex items-center justify-center gap-2 px-6 py-4 font-meta text-xs font-semibold uppercase tracking-wide text-white/80 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline focus-visible:-outline-offset-2 focus-visible:outline-white"
                 >
                   {contact.label}
                   <span aria-hidden="true">↗</span>

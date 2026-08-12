@@ -12,7 +12,7 @@ export function MSNApp() {
             <p className="font-bold [text-shadow:1px_1px_1px_rgba(0,0,0,0.5)]">
               João Felipe Silva
             </p>
-            <p className="text-xp-base">Disponivel</p>
+            <p className="text-xp-base">Disponível</p>
           </div>
         </div>
       </div>

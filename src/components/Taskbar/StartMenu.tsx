@@ -43,7 +43,7 @@ export function StartMenu({ onClose, onLogout, onPower, onReturn }: StartMenuPro
           <p className="text-[16px] font-bold [text-shadow:1px_1px_1px_rgba(0,0,0,0.6)]">
             {ABOUT.name}
           </p>
-          <p className="text-[14px]">Portfolio XP</p>
+          <p className="text-[14px]">Portfólio XP</p>
         </div>
       </div>
 

@@ -17,14 +17,17 @@ interface Project {
   codeOnly?: boolean
   /** Conceitos/paradigmas de fundamentação usados no projeto (ex.: POO), à parte do stack técnico. */
   fundamentals?: string[]
+  /** true = oculto das listagens (formal e Ares Galaxy) sem remover os dados. */
+  hidden?: boolean
 }
 
 export const ABOUT = {
   name: 'João Felipe Silva',
   role: 'Desenvolvedor Full Stack',
   bio: `Desenvolvedor Full Stack formado em Sistemas de Informação pela UFU, com
-experiência em TypeScript, Node.js, Angular, C#, python e SQL. Atua como freelancer
-desenvolvendo e mantendo aplicações web de ponta a ponta, com passagem no profissonal, atuando em diversas areas como educação e financeira.
+experiência em TypeScript, Node.js, Angular, C#, Python e SQL. Atua como freelancer
+desenvolvendo e mantendo aplicações web de ponta a ponta, com passagem profissional por
+sistemas corporativos nas áreas de educação e financeira.
 Também tem pesquisa científica em IA e visão computacional, e foi professor
 voluntário de desenvolvimento web.`,
   photo: '/assets/foto.jpg',
@@ -86,9 +89,10 @@ export const PROJECTS: Project[] = [
     seeds: 19,
     peers: 3,
     url: 'https://mid-cardapio.onrender.com/',
-    demo: 'https://github.com/jfsjao/Mid-Cardapio',
+    demo: '',
     status: 'progress' as const,
     fundamentals: ['Mobile-first'],
+    hidden: true,
   },
   {
     id: 5,

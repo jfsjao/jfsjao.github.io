@@ -3,6 +3,7 @@ import { DESKTOP_APPS } from '../../config/apps.config'
 import { APP_TITLES, useWindowStore } from '../../store/windowStore'
 import controlPanelIcon from '../../assets/icons/icon__control_panel--large.png'
 import documentsIcon from '../../assets/icons/icon__documents--large.png'
+import homeIcon from '../../assets/icons/icon__home--large.png'
 import logOutIcon from '../../assets/icons/icon__log_out--large.png'
 import searchIcon from '../../assets/icons/icon__search--large.png'
 import shutDownIcon from '../../assets/icons/icon__shut_down--large.png'
@@ -14,9 +15,10 @@ interface StartMenuProps {
   onClose: () => void
   onLogout: () => void
   onPower: () => void
+  onReturn: () => void
 }
 
-export function StartMenu({ onClose, onLogout, onPower }: StartMenuProps) {
+export function StartMenu({ onClose, onLogout, onPower, onReturn }: StartMenuProps) {
   const openWindow = useWindowStore((state) => state.openWindow)
   const reduceMotion = useReducedMotion()
 
@@ -101,6 +103,17 @@ export function StartMenu({ onClose, onLogout, onPower }: StartMenuProps) {
         >
           <img src={logOutIcon} alt="" className="h-6 w-6" draggable={false} />
           Logoff
+        </button>
+        <button
+          type="button"
+          className="flex items-center gap-1 text-[12px] font-medium"
+          onClick={() => {
+            onClose()
+            onReturn()
+          }}
+        >
+          <img src={homeIcon} alt="" className="h-6 w-6" draggable={false} />
+          Portfólio
         </button>
         <button
           type="button"

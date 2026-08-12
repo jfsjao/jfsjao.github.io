@@ -9,15 +9,20 @@ import { XPNotification } from './XPNotification'
 import wallpaperUrl from '../../assets/wallpaper/wallpaper__bliss.jpg'
 import { useEffect, useRef, useState } from 'react'
 import { TASKBAR_HEIGHT_PX } from '../../config/layout.config'
+import { useIsDesktopViewport } from '../../hooks/useIsDesktopViewport'
 
 interface DesktopProps {
   onLogout: () => void
   onPower: () => void
+  onReturn: () => void
 }
 
-export function Desktop({ onLogout, onPower }: DesktopProps) {
+export function Desktop({ onLogout, onPower, onReturn }: DesktopProps) {
   const windows = useWindowStore((state) => state.windows)
   const openWindow = useWindowStore((state) => state.openWindow)
+  // Mobile XP (docs/next-prompt.md): launcher em grade abaixo de 768px, em vez
+  // dos ícones soltos e arrastáveis do desktop livre.
+  const isDesktop = useIsDesktopViewport()
   const didOpenReadme = useRef(false)
   const didShowAresHint = useRef(false)
   const [showXPNotification, setShowXPNotification] = useState(true)
@@ -63,9 +68,16 @@ export function Desktop({ onLogout, onPower }: DesktopProps) {
     >
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(0,0,0,0.02)_45%,rgba(0,0,0,0.18))]" />
       <div className="xp-screen-lines pointer-events-none absolute inset-0" />
-      <div className="absolute inset-x-0 top-0" style={{ bottom: TASKBAR_HEIGHT_PX }}>
+      <div
+        className={
+          isDesktop
+            ? 'absolute inset-x-0 top-0'
+            : 'absolute inset-x-0 top-0 grid grid-cols-3 gap-1 p-2 content-start'
+        }
+        style={{ bottom: TASKBAR_HEIGHT_PX }}
+      >
         {DESKTOP_APPS.map((app: DesktopIconConfig) => (
-          <DesktopIcon key={app.appId} app={app} />
+          <DesktopIcon key={app.appId} app={app} isDesktop={isDesktop} />
         ))}
       </div>
 
@@ -81,6 +93,7 @@ export function Desktop({ onLogout, onPower }: DesktopProps) {
       <Taskbar
         onLogout={onLogout}
         onPower={onPower}
+        onReturn={onReturn}
         isNotificationOpen={showXPNotification}
         onNotificationToggle={() => setShowXPNotification((visible) => !visible)}
       />

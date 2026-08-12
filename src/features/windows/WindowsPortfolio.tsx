@@ -78,7 +78,7 @@ export function WindowsPortfolio({ onReturn }: WindowsPortfolioProps) {
 
   return (
     <div className="relative min-h-[100dvh]">
-      <Desktop onLogout={handleLogout} onPower={() => setIsPowerOpen(true)} />
+      <Desktop onLogout={handleLogout} onPower={() => setIsPowerOpen(true)} onReturn={onReturn} />
       {isPowerOpen && (
         <PowerDialog
           onCancel={() => setIsPowerOpen(false)}

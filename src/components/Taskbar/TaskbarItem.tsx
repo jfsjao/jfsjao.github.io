@@ -21,7 +21,7 @@ export function TaskbarItem({ windowState }: TaskbarItemProps) {
   return (
     <button
       type="button"
-      className={`flex h-full w-[clamp(8rem,18vw,14rem)] min-w-0 shrink-0 items-center gap-1.5 overflow-hidden rounded-[3px] border border-[#1a51c688] px-2 py-px text-left font-[Tahoma,'Segoe_UI',Arial,sans-serif] text-[13px] font-medium text-white ${
+      className={`flex h-full w-10 min-w-0 shrink-0 items-center justify-center gap-1.5 overflow-hidden rounded-[3px] border border-[#1a51c688] px-2 py-px text-left font-[Tahoma,'Segoe_UI',Arial,sans-serif] text-[13px] font-medium text-white md:w-[clamp(8rem,18vw,14rem)] md:justify-start ${
         windowState.isFocused && !windowState.isMinimized
           ? 'bg-xp-taskbar-btn-active shadow-[0.1rem_0.1rem_0.1rem_rgba(255,255,255,0.2),inset_0.1rem_0.1rem_0.1rem_rgba(0,0,0,0.267)] hover:bg-xp-taskbar-btn-active-hov'
           : 'bg-xp-taskbar-btn shadow-[0.1rem_0.1rem_0.1rem_rgba(0,0,0,0.267),inset_0.1rem_0.1rem_0.1rem_rgba(255,255,255,0.2)] hover:bg-xp-taskbar-btn-hov'
@@ -40,7 +40,7 @@ export function TaskbarItem({ windowState }: TaskbarItemProps) {
           draggable={false}
         />
       </span>
-      <span className="min-w-0 flex-1 overflow-hidden whitespace-nowrap [mask-image:linear-gradient(to_right,black_80%,transparent_100%)]">
+      <span className="hidden min-w-0 flex-1 overflow-hidden whitespace-nowrap [mask-image:linear-gradient(to_right,black_80%,transparent_100%)] md:block">
         {windowState.title}
       </span>
     </button>

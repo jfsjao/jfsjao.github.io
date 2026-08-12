@@ -21,9 +21,10 @@ function snapToGrid(value: number, cell: number) {
 
 interface DesktopIconProps {
   app: DesktopIconConfig
+  isDesktop: boolean
 }
 
-export function DesktopIcon({ app }: DesktopIconProps) {
+export function DesktopIcon({ app, isDesktop }: DesktopIconProps) {
   const openWindow = useWindowStore((state) => state.openWindow)
   const position = useDesktopIconStore((state) => state.positions[app.appId])
   const setPosition = useDesktopIconStore((state) => state.setPosition)
@@ -98,6 +99,38 @@ export function DesktopIcon({ app }: DesktopIconProps) {
     }
 
     handleOpen()
+  }
+
+  // Mobile XP (docs/next-prompt.md): launcher em grade — sem posição livre,
+  // sem drag, um toque abre direto (nada de esperar um segundo toque).
+  if (!isDesktop) {
+    return (
+      <button
+        type="button"
+        className="flex flex-col items-center justify-start gap-1 rounded-[4px] p-2 text-xp-text-inv outline-none active:bg-xp-blue/25"
+        onClick={() =>
+          openWindow({
+            appId: app.appId,
+            title: APP_TITLES[app.appId],
+            icon: app.icon,
+            x: app.defaultX,
+            y: app.defaultY,
+            width: app.defaultWidth,
+            height: app.defaultHeight,
+          })
+        }
+      >
+        <img
+          src={app.icon}
+          alt=""
+          className="h-11 w-11 object-contain drop-shadow-[1px_2px_1px_rgba(0,0,0,0.45)]"
+          draggable={false}
+        />
+        <span className="max-w-[88px] px-[2px] text-center font-[Tahoma,'Segoe_UI',Arial,sans-serif] text-[12px] font-medium leading-[1.2] [text-shadow:1px_1px_2px_rgba(0,0,0,1)]">
+          {app.label}
+        </span>
+      </button>
+    )
   }
 
   return (

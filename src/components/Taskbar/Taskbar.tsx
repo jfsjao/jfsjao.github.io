@@ -9,6 +9,7 @@ import { StartMenu } from './StartMenu'
 interface TaskbarProps {
   onLogout: () => void
   onPower: () => void
+  onReturn: () => void
   isNotificationOpen: boolean
   onNotificationToggle: () => void
 }
@@ -16,6 +17,7 @@ interface TaskbarProps {
 export function Taskbar({
   onLogout,
   onPower,
+  onReturn,
   isNotificationOpen,
   onNotificationToggle,
 }: TaskbarProps) {
@@ -30,6 +32,7 @@ export function Taskbar({
             onClose={() => setIsStartOpen(false)}
             onLogout={onLogout}
             onPower={onPower}
+            onReturn={onReturn}
           />
         )}
       </AnimatePresence>
@@ -38,7 +41,7 @@ export function Taskbar({
           isActive={isStartOpen}
           onClick={() => setIsStartOpen((open) => !open)}
         />
-        <div className="flex h-full min-w-0 flex-1 items-center gap-[3px] overflow-x-auto overflow-y-hidden px-1 py-[2px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex h-full min-w-0 flex-1 items-center gap-[2px] overflow-x-auto overflow-y-hidden px-1 py-[2px] [scrollbar-width:none] md:gap-[3px] [&::-webkit-scrollbar]:hidden">
           {windows.map((windowState) => (
             <TaskbarItem key={windowState.id} windowState={windowState} />
           ))}

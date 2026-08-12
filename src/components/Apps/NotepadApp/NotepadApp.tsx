@@ -8,7 +8,7 @@ Quem não lembra do Paciência Spider e do Pinball? Quero adicionar essas e outr
 
 Enquanto isso, fique à vontade para abrir os programas, conhecer meus projetos e explorar um pouco da minha trajetória.
 
-Se quiser voltar ao modo mais profissional, abra o Menu Iniciar e desligue o computador.
+Se quiser voltar ao modo mais profissional, abra o Menu Iniciar e clique em "Portfólio".
 
 João Felipe`
 

@@ -5,9 +5,10 @@ import type { PointerEvent as ReactPointerEvent } from 'react'
 interface TitleBarProps {
   onDragStart: (event: ReactPointerEvent<HTMLElement>) => void
   windowState: WindowState
+  isDesktop: boolean
 }
 
-export function TitleBar({ onDragStart, windowState }: TitleBarProps) {
+export function TitleBar({ onDragStart, windowState, isDesktop }: TitleBarProps) {
   const closeWindow = useWindowStore((state) => state.closeWindow)
   const minimizeWindow = useWindowStore((state) => state.minimizeWindow)
   const maximizeWindow = useWindowStore((state) => state.maximizeWindow)
@@ -44,18 +45,20 @@ export function TitleBar({ onDragStart, windowState }: TitleBarProps) {
           }}
           title="Minimizar"
         />
-        <button
-          type="button"
-          className="xp-caption-button xp-caption-button-blue"
-          data-glyph={windowState.isMaximized ? 'restore' : 'maximize'}
-          aria-label={windowState.isMaximized ? 'Restaurar' : 'Maximizar'}
-          onPointerDown={(event) => event.stopPropagation()}
-          onClick={(event) => {
-            event.stopPropagation()
-            maximizeWindow(windowState.id)
-          }}
-          title={windowState.isMaximized ? 'Restaurar' : 'Maximizar'}
-        />
+        {isDesktop && (
+          <button
+            type="button"
+            className="xp-caption-button xp-caption-button-blue"
+            data-glyph={windowState.isMaximized ? 'restore' : 'maximize'}
+            aria-label={windowState.isMaximized ? 'Restaurar' : 'Maximizar'}
+            onPointerDown={(event) => event.stopPropagation()}
+            onClick={(event) => {
+              event.stopPropagation()
+              maximizeWindow(windowState.id)
+            }}
+            title={windowState.isMaximized ? 'Restaurar' : 'Maximizar'}
+          />
+        )}
         <button
           type="button"
           className="xp-caption-button xp-caption-button-close"

@@ -7,6 +7,7 @@ import { ResizeHandle } from './ResizeHandle'
 import type { PointerEvent as ReactPointerEvent } from 'react'
 import { TASKBAR_HEIGHT_PX } from '../../config/layout.config'
 import { renderApp } from '../../config/appRegistry'
+import { useIsDesktopViewport } from '../../hooks/useIsDesktopViewport'
 
 interface WindowProps {
   windowState: WindowState
@@ -16,6 +17,10 @@ function WindowComponent({ windowState }: WindowProps) {
   const focusWindow = useWindowStore((state) => state.focusWindow)
   const moveWindow = useWindowStore((state) => state.moveWindow)
   const resizeWindow = useWindowStore((state) => state.resizeWindow)
+  // Mobile XP (docs/next-prompt.md): below 768px every window runs full-bleed,
+  // stacked one at a time by z-index, with no drag or resize.
+  const isDesktop = useIsDesktopViewport()
+  const isFullBleed = windowState.isMaximized || !isDesktop
 
   // Rendering the app body is expensive (canvas draws, lists, etc). Since the
   // appId of a window never changes after it's opened, memoize it so dragging
@@ -27,7 +32,7 @@ function WindowComponent({ windowState }: WindowProps) {
   }
 
   const handleDragStart = (event: ReactPointerEvent<HTMLElement>) => {
-    if (windowState.isMaximized) {
+    if (isFullBleed) {
       return
     }
 
@@ -62,7 +67,7 @@ function WindowComponent({ windowState }: WindowProps) {
   }
 
   const handleResizeStart = (event: ReactPointerEvent<HTMLDivElement>) => {
-    if (windowState.isMaximized) {
+    if (isFullBleed) {
       return
     }
 
@@ -105,18 +110,18 @@ function WindowComponent({ windowState }: WindowProps) {
       }`}
       style={{
         display: windowState.isMinimized ? 'none' : 'flex',
-        height: windowState.isMaximized ? `calc(100svh - ${TASKBAR_HEIGHT_PX}px)` : windowState.height,
-        left: windowState.isMaximized ? 0 : windowState.x,
-        top: windowState.isMaximized ? 0 : windowState.y,
-        width: windowState.isMaximized ? '100vw' : windowState.width,
+        height: isFullBleed ? `calc(100svh - ${TASKBAR_HEIGHT_PX}px)` : windowState.height,
+        left: isFullBleed ? 0 : windowState.x,
+        top: isFullBleed ? 0 : windowState.y,
+        width: isFullBleed ? '100vw' : windowState.width,
         zIndex: windowState.zIndex,
       }}
     >
-      <TitleBar onDragStart={handleDragStart} windowState={windowState} />
+      <TitleBar onDragStart={handleDragStart} windowState={windowState} isDesktop={isDesktop} />
       <div className="mx-0 min-h-0 flex-1 overflow-auto border-x border-b border-[#00138c] bg-xp-window-inner text-xp-base">
         {appContent}
       </div>
-      <ResizeHandle onResizeStart={handleResizeStart} windowState={windowState} />
+      {isDesktop && <ResizeHandle onResizeStart={handleResizeStart} windowState={windowState} />}
     </motion.section>
   )
 }

@@ -1,13 +1,23 @@
 import type { DesktopIconConfig } from '../types/window.types'
 
-const wordIcon = new URL('../assets/icons/docword.png', import.meta.url).href
-const aresIcon = new URL('../assets/icons/icon__file_explorer--large.png', import.meta.url).href
+const notepadIcon = new URL('../assets/icons/icon__notepad--large.png', import.meta.url).href
+const wordIcon = new URL('../assets/icons/word.png', import.meta.url).href
+const projectsIcon = new URL('../assets/icons/icon__ares--large.png', import.meta.url).href
 const msnIcon = new URL('../assets/icons/icon__messenger--large.png', import.meta.url).href
 const winampIcon = new URL('../assets/icons/icon__media_player--large.png', import.meta.url).href
-const paintIcon = new URL('../assets/icons/icon_style_options--large.png', import.meta.url).href
+const paintIcon = new URL('../assets/icons/icon__paint--large.png', import.meta.url).href
 const myComputerIcon = new URL('../assets/icons/icon__computer--large.png', import.meta.url).href
 
 export const DESKTOP_APPS: DesktopIconConfig[] = [
+  {
+    appId: 'notepad',
+    label: 'Leia-me.txt',
+    icon: notepadIcon,
+    defaultWidth: 560,
+    defaultHeight: 390,
+    defaultX: 60,
+    defaultY: 45,
+  },
   {
     appId: 'word',
     label: 'Sobre Mim.docx',
@@ -18,11 +28,11 @@ export const DESKTOP_APPS: DesktopIconConfig[] = [
     defaultY: 60,
   },
   {
-    appId: 'ares',
-    label: 'Projetos',
-    icon: aresIcon,
-    defaultWidth: 680,
-    defaultHeight: 480,
+    appId: 'projects',
+    label: 'Ares Galaxy',
+    icon: projectsIcon,
+    defaultWidth: 760,
+    defaultHeight: 500,
     defaultX: 120,
     defaultY: 80,
   },
@@ -46,7 +56,7 @@ export const DESKTOP_APPS: DesktopIconConfig[] = [
   },
   {
     appId: 'paint',
-    label: 'Skills.bmp',
+    label: 'Paint',
     icon: paintIcon,
     defaultWidth: 750,
     defaultHeight: 520,

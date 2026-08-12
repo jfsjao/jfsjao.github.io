@@ -8,7 +8,12 @@ function formatClock(date: Date) {
   })
 }
 
-export function Clock() {
+interface ClockProps {
+  isNotificationOpen: boolean
+  onNotificationToggle: () => void
+}
+
+export function Clock({ isNotificationOpen, onNotificationToggle }: ClockProps) {
   const [time, setTime] = useState(() => formatClock(new Date()))
 
   useEffect(() => {
@@ -18,15 +23,25 @@ export function Clock() {
   }, [])
 
   return (
-    <div className="flex h-full w-[118px] items-center justify-center gap-2 border-l border-[#6eb4ff] bg-[linear-gradient(180deg,#22a6ef,#0d7ed2)] text-xp-sm shadow-[inset_1px_0_0_rgba(255,255,255,0.4)]">
+    <div className="flex h-full w-[122px] items-center justify-center gap-1.5 border-l border-[#0a2e52] bg-[linear-gradient(180deg,#16aef0_3%,#168de8_16%,#0d8dea_90%,#095bc9_100%)] font-[Tahoma,'Segoe_UI',Arial,sans-serif] text-[13px] shadow-[inset_1px_0_1px_#22c4f4]">
       <button
         type="button"
-        className="flex h-5 w-5 items-center justify-center rounded-[2px] bg-[#0b69b7] text-[10px] shadow-[inset_1px_1px_0_rgba(255,255,255,0.45)]"
+        className="flex h-full w-4 items-center justify-center text-xp-text-inv/80 transition-colors hover:bg-white/10 active:bg-black/10"
         aria-label="Mostrar icones ocultos"
       >
-        {'<'}
+        <svg width="6" height="9" viewBox="0 0 6 9" fill="none" aria-hidden="true">
+          <path d="M5.5 0.5L1 4.5L5.5 8.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       </button>
-      <img src={infoIcon} alt="" className="h-4 w-4" draggable={false} />
+      <button
+        type="button"
+        onClick={onNotificationToggle}
+        aria-label={isNotificationOpen ? 'Fechar notificação' : 'Abrir notificação'}
+        aria-expanded={isNotificationOpen}
+        className="flex h-6 w-5 items-center justify-center rounded-[2px] hover:bg-white/15 active:translate-y-px active:bg-black/10 focus-visible:outline focus-visible:outline-1 focus-visible:outline-white"
+      >
+        <img src={infoIcon} alt="" className="h-4 w-4" draggable={false} />
+      </button>
       <span>{time}</span>
     </div>
   )

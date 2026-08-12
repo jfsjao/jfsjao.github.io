@@ -27,7 +27,7 @@ function ToolButton({ children }: { children: React.ReactNode }) {
 
 export function WordToolbar() {
   return (
-    <div className="flex shrink-0 flex-col border-b border-[#8a8a8a] bg-[#d7e8ff] text-[13px]">
+    <div className="flex shrink-0 flex-col border-b border-[#8a8a8a] bg-[#d7e8ff] text-[14px]">
       <div className="flex h-8 items-center gap-1 border-b border-[#9fb5d7] bg-[linear-gradient(180deg,#eef6ff,#bcd8ff)] px-1">
         <span className="mr-1 h-5 w-1 border-l border-[#7f9db9]" />
         {menuItems.map((item) => (

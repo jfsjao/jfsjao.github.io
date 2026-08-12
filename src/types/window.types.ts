@@ -1,4 +1,11 @@
-export type AppId = 'word' | 'ares' | 'msn' | 'winamp' | 'paint' | 'mycomputer'
+export type AppId =
+  | 'notepad'
+  | 'word'
+  | 'projects'
+  | 'msn'
+  | 'winamp'
+  | 'paint'
+  | 'mycomputer'
 
 export interface WindowState {
   id: string

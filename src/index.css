@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * "fs Tahoma 8px" by ETHproductions (https://fontstruct.com/fontstructions/show/735108)
+ * Licensed under CC BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0/).
+ * License and readme kept alongside the font file in src/assets/fonts/fs-tahoma-8px/.
+ */
+@font-face {
+  font-family: 'XP Tahoma';
+  src: url('./assets/fonts/fs-tahoma-8px/fs-tahoma-8px.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   * {
     box-sizing: border-box;
@@ -19,11 +32,32 @@
 
   body {
     overflow: hidden;
-    font-family: Tahoma, 'Segoe UI', Arial, sans-serif;
-    font-size: 12px;
+    font-family: 'XP Tahoma', Tahoma, 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
     color: #000;
     background: #000;
     letter-spacing: 0;
+  }
+
+  html[data-mode='formal'],
+  html[data-mode='formal'] body,
+  html[data-mode='formal'] #root {
+    height: auto;
+    min-height: 100%;
+  }
+
+  html[data-mode='formal'] body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #f5f4ef;
+    color: #161a16;
+    font-family: 'Manrope', 'Segoe UI', Arial, sans-serif;
+    font-size: 16px;
+  }
+
+  html[data-mode='formal'] ::selection {
+    background: #2458c6;
+    color: #fff;
   }
 
   button,
@@ -56,29 +90,103 @@
   .xp-titlebar-active {
     background: linear-gradient(
       to bottom,
-      #4b92ff 0%,
-      #245edc 8%,
-      #0a246a 9%,
-      #3d6bc4 18%,
-      #245edc 72%,
-      #1941a5 100%
+      #3593ff 0%,
+      #288eff 8%,
+      #127dff 12%,
+      #036ffc 18%,
+      #0262ee 55%,
+      #0054e3 88%,
+      #0046d5 100%
     );
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
   }
 
   .xp-titlebar-inactive {
-    background: linear-gradient(to bottom, #c2cff4 0%, #7a96df 14%, #5a79c0 100%);
+    background: linear-gradient(to bottom, #d4def7 0%, #9db3e8 12%, #7697e7 55%, #6d8bd5 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
   }
 
   .xp-caption-button {
     position: relative;
-    width: 21px;
-    height: 21px;
-    border-radius: 4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
     border: 1px solid rgba(255, 255, 255, 0.75);
     box-shadow:
       inset 1px 1px 0 rgba(255, 255, 255, 0.85),
       inset -1px -1px 0 rgba(0, 0, 0, 0.25),
       0 1px 1px rgba(0, 0, 0, 0.28);
+    transition:
+      filter 80ms linear,
+      transform 80ms linear;
+  }
+
+  .xp-caption-button::before,
+  .xp-caption-button::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .xp-caption-button:active {
+    filter: brightness(0.82);
+    transform: translateY(1px);
+  }
+
+  .xp-caption-button[data-glyph='minimize']::before {
+    bottom: 4px;
+    left: 5px;
+    width: 9px;
+    height: 2px;
+    background: white;
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+
+  .xp-caption-button[data-glyph='maximize']::before {
+    left: 4px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border: 2px solid white;
+    border-top-width: 3px;
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
+  }
+
+  .xp-caption-button[data-glyph='restore']::before,
+  .xp-caption-button[data-glyph='restore']::after {
+    width: 8px;
+    height: 7px;
+    border: 2px solid white;
+    border-top-width: 3px;
+  }
+
+  .xp-caption-button[data-glyph='restore']::before {
+    left: 6px;
+    top: 3px;
+  }
+
+  .xp-caption-button[data-glyph='restore']::after {
+    left: 3px;
+    top: 6px;
+    background: #2c68db;
+  }
+
+  .xp-caption-button[data-glyph='close']::before,
+  .xp-caption-button[data-glyph='close']::after {
+    left: 3px;
+    top: 8px;
+    width: 12px;
+    height: 2px;
+    background: white;
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+
+  .xp-caption-button[data-glyph='close']::before {
+    transform: rotate(45deg);
+  }
+
+  .xp-caption-button[data-glyph='close']::after {
+    transform: rotate(-45deg);
   }
 
   .xp-caption-button-blue {
@@ -121,5 +229,24 @@
       rgba(0, 0, 0, 0.05) 3px
     );
     mix-blend-mode: soft-light;
+  }
+
+  @keyframes formal-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .formal-marquee-track {
+    animation: formal-marquee 32s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .formal-marquee-track {
+      animation: none;
+    }
   }
 }

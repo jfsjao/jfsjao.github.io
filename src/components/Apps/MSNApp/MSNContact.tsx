@@ -14,7 +14,7 @@ export function MSNContact({ contact }: MSNContactProps) {
       <span className={`h-3 w-3 rounded-full ${statusColor}`} />
       <div>
         <p>{contact.name}</p>
-        <p className="text-xp-sm text-xp-text-muted">{contact.message}</p>
+        <p className="text-xp-base text-xp-text-muted">{contact.message}</p>
       </div>
     </div>
   )

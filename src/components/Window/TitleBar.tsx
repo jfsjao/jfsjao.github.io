@@ -14,53 +14,60 @@ export function TitleBar({ onDragStart, windowState }: TitleBarProps) {
 
   return (
     <header
-      className={`mb-[2px] flex h-7 shrink-0 items-center gap-2 rounded-[4px_4px_1px_1px] px-1 text-xp-sm font-bold text-white ${
+      className={`flex h-[27px] shrink-0 items-center gap-1 rounded-[4px_4px_0_0] px-[2px] font-[Tahoma] text-[14px] font-bold text-white ${
         windowState.isFocused ? 'xp-titlebar-active' : 'xp-titlebar-inactive'
       }`}
       onPointerDown={onDragStart}
+      onDoubleClick={() => maximizeWindow(windowState.id)}
     >
-      <img src={windowState.icon} alt="" className="h-5 w-5 shrink-0" draggable={false} />
-      <span className="truncate px-1 [text-shadow:1px_1px_1px_rgba(0,0,0,0.7)]">
+      <img
+        src={windowState.icon}
+        alt=""
+        width={16}
+        height={16}
+        className="h-4 w-4 shrink-0 object-contain"
+        draggable={false}
+      />
+      <span className="truncate px-[2px] [text-shadow:1px_1px_1px_rgba(0,0,0,0.7)]">
         {windowState.title}
       </span>
       <div className="ml-auto flex gap-[2px]">
         <button
           type="button"
           className="xp-caption-button xp-caption-button-blue"
+          data-glyph="minimize"
+          aria-label="Minimizar"
           onPointerDown={(event) => event.stopPropagation()}
           onClick={(event) => {
             event.stopPropagation()
             minimizeWindow(windowState.id)
           }}
           title="Minimizar"
-        >
-          <span className="absolute bottom-[5px] left-[5px] h-[2px] w-[9px] bg-white shadow-[1px_1px_0_rgba(0,0,0,0.35)]" />
-        </button>
+        />
         <button
           type="button"
           className="xp-caption-button xp-caption-button-blue"
+          data-glyph={windowState.isMaximized ? 'restore' : 'maximize'}
+          aria-label={windowState.isMaximized ? 'Restaurar' : 'Maximizar'}
           onPointerDown={(event) => event.stopPropagation()}
           onClick={(event) => {
             event.stopPropagation()
             maximizeWindow(windowState.id)
           }}
-          title="Maximizar"
-        >
-          <span className="absolute left-[5px] top-[5px] h-[10px] w-[10px] border-2 border-white shadow-[1px_1px_0_rgba(0,0,0,0.35)]" />
-        </button>
+          title={windowState.isMaximized ? 'Restaurar' : 'Maximizar'}
+        />
         <button
           type="button"
           className="xp-caption-button xp-caption-button-close"
+          data-glyph="close"
+          aria-label="Fechar"
           onPointerDown={(event) => event.stopPropagation()}
           onClick={(event) => {
             event.stopPropagation()
             closeWindow(windowState.id)
           }}
           title="Fechar"
-        >
-          <span className="absolute left-[5px] top-[9px] h-[2px] w-[11px] rotate-45 bg-white shadow-[1px_1px_0_rgba(0,0,0,0.35)]" />
-          <span className="absolute left-[5px] top-[9px] h-[2px] w-[11px] -rotate-45 bg-white shadow-[1px_1px_0_rgba(0,0,0,0.35)]" />
-        </button>
+        />
       </div>
     </header>
   )

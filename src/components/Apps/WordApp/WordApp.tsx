@@ -4,7 +4,7 @@ import { WordToolbar } from './WordToolbar'
 
 function HorizontalRuler() {
   return (
-    <div className="flex h-7 items-end border-b border-[#9fb5d7] bg-[#dbeafe] pl-9 text-[11px]">
+    <div className="flex h-7 items-end border-b border-[#9fb5d7] bg-[#dbeafe] pl-9 text-[13px]">
       {Array.from({ length: 8 }, (_, index) => (
         <div key={index} className="relative h-full w-24 border-l border-[#6b6b6b]">
           <span className="absolute left-1 top-1">{index + 1}</span>
@@ -21,7 +21,7 @@ function HorizontalRuler() {
 
 function VerticalRuler() {
   return (
-    <div className="w-8 border-r border-[#9fb5d7] bg-[#dbeafe] pt-4 text-center text-[11px]">
+    <div className="w-8 border-r border-[#9fb5d7] bg-[#dbeafe] pt-4 text-center text-[13px]">
       {Array.from({ length: 6 }, (_, index) => (
         <div key={index} className="h-20 border-b border-dotted border-[#6b6b6b]">
           {index + 1}

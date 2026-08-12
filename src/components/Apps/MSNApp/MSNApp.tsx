@@ -12,11 +12,11 @@ export function MSNApp() {
             <p className="font-bold [text-shadow:1px_1px_1px_rgba(0,0,0,0.5)]">
               João Felipe Silva
             </p>
-            <p className="text-xp-sm">Disponivel</p>
+            <p className="text-xp-base">Disponivel</p>
           </div>
         </div>
       </div>
-      <div className="border-b border-[#8aa7cf] bg-white px-2 py-1 text-xp-sm text-xp-text-muted">
+      <div className="border-b border-[#8aa7cf] bg-white px-2 py-1.5 text-xp-base text-xp-text-muted">
         Digite uma mensagem pessoal
       </div>
       <div className="flex-1 overflow-auto p-2">

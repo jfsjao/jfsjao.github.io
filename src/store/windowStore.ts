@@ -18,6 +18,7 @@ interface WindowStore {
   maximizeWindow: (id: string) => void
   moveWindow: (id: string, x: number, y: number) => void
   resizeWindow: (id: string, width: number, height: number) => void
+  resetWindows: () => void
 }
 
 export const useWindowStore = create<WindowStore>((set, get) => ({
@@ -103,11 +104,14 @@ export const useWindowStore = create<WindowStore>((set, get) => ({
         window.id === id ? { ...window, width, height } : window,
       ),
     })),
+
+  resetWindows: () => set({ windows: [], topZ: 10 }),
 }))
 
 export const APP_TITLES: Record<AppId, string> = {
+  notepad: 'Leia-me.txt - Bloco de Notas',
   word: 'Sobre Mim.doc - Word 2003',
-  ares: 'Ares Galaxy - Projetos',
+  projects: 'Ares Galaxy - Projetos',
   msn: 'MSN Messenger',
   winamp: 'Winamp',
   paint: 'Skills.bmp - Paint',

@@ -4,7 +4,8 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // GitHub Pages serves this project from https://<user>.github.io/portifolio-jf/,
-  // so assets must resolve under that subpath in production. Local dev keeps '/'.
-  base: process.env.GITHUB_PAGES ? '/portifolio-jf/' : '/',
+  // Repo é jfsjao/jfsjao.github.io — uma página de usuário do GitHub Pages,
+  // sempre publicada na raiz do domínio (https://jfsjao.github.io/), nunca
+  // num subcaminho. Base fica em '/' tanto em dev quanto em produção.
+  base: '/',
 })

@@ -1,20 +1,35 @@
-import { useEffect, useState } from 'react';
-import { BootScreen } from './components/Boot/BootScreen';
-import { Desktop } from './components/Desktop/Desktop';
+import { lazy, Suspense, useEffect } from 'react'
+import { FormalPortfolio } from './features/formal/FormalPortfolio'
+import { useAppMode } from './app/useAppMode'
+
+const WindowsPortfolio = lazy(() =>
+  import('./features/windows/WindowsPortfolio').then((module) => ({
+    default: module.WindowsPortfolio,
+  })),
+)
 
 function App() {
-  const [isBooting, setIsBooting] = useState(true);
+  const { mode, setMode } = useAppMode()
 
   useEffect(() => {
-    const bootTimer = window.setTimeout(() => setIsBooting(false), 1800);
-    return () => window.clearTimeout(bootTimer);
-  }, []);
+    document.documentElement.dataset.mode = mode
+  }, [mode])
 
-  return isBooting ? (
-    <BootScreen onStart={() => setIsBooting(false)} />
-  ) : (
-    <Desktop />
-  );
+  if (mode === 'windows') {
+    return (
+      <Suspense
+        fallback={
+          <main className="flex min-h-[100dvh] items-center justify-center bg-[#111419] text-white">
+            Carregando modo Windows…
+          </main>
+        }
+      >
+        <WindowsPortfolio onReturn={() => setMode('formal')} />
+      </Suspense>
+    )
+  }
+
+  return <FormalPortfolio onOpenWindows={() => setMode('windows')} />
 }
 
-export default App;
+export default App

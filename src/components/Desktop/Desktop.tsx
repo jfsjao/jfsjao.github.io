@@ -1,33 +1,60 @@
-import { AresApp } from '../Apps/AresApp/AresApp'
-import { MSNApp } from '../Apps/MSNApp/MSNApp'
-import { MyComputerApp } from '../Apps/MyComputerApp/MyComputerApp'
-import { PaintApp } from '../Apps/PaintApp/PaintApp'
-import { WinampApp } from '../Apps/WinampApp/WinampApp'
-import { WordApp } from '../Apps/WordApp/WordApp'
 import { Taskbar } from '../Taskbar/Taskbar'
 import { Window } from '../Window/Window'
 import { DESKTOP_APPS } from '../../config/apps.config'
 import { useWindowStore } from '../../store/windowStore'
-import type { AppId, DesktopIconConfig } from '../../types/window.types'
+import type { DesktopIconConfig } from '../../types/window.types'
+import { AresHintNotification } from './AresHintNotification'
 import { DesktopIcon } from './DesktopIcon'
 import { XPNotification } from './XPNotification'
 import wallpaperUrl from '../../assets/wallpaper/wallpaper__bliss.jpg'
+import { useEffect, useRef, useState } from 'react'
+import { TASKBAR_HEIGHT_PX } from '../../config/layout.config'
 
-function renderApp(appId: AppId) {
-  const appMap: Record<AppId, JSX.Element> = {
-    word: <WordApp />,
-    ares: <AresApp />,
-    msn: <MSNApp />,
-    winamp: <WinampApp />,
-    paint: <PaintApp />,
-    mycomputer: <MyComputerApp />,
-  }
-
-  return appMap[appId]
+interface DesktopProps {
+  onLogout: () => void
+  onPower: () => void
 }
 
-export function Desktop() {
+export function Desktop({ onLogout, onPower }: DesktopProps) {
   const windows = useWindowStore((state) => state.windows)
+  const openWindow = useWindowStore((state) => state.openWindow)
+  const didOpenReadme = useRef(false)
+  const didShowAresHint = useRef(false)
+  const [showXPNotification, setShowXPNotification] = useState(true)
+  const [showAresHint, setShowAresHint] = useState(false)
+
+  useEffect(() => {
+    if (didOpenReadme.current) {
+      return
+    }
+
+    didOpenReadme.current = true
+    const readme = DESKTOP_APPS.find((app) => app.appId === 'notepad')
+    if (!readme) {
+      return
+    }
+
+    openWindow({
+      appId: readme.appId,
+      title: 'Leia-me.txt - Bloco de Notas',
+      icon: readme.icon,
+      x: readme.defaultX,
+      y: readme.defaultY,
+      width: readme.defaultWidth,
+      height: readme.defaultHeight,
+    })
+  }, [openWindow])
+
+  useEffect(() => {
+    if (didShowAresHint.current) {
+      return
+    }
+
+    if (windows.some((window) => window.appId === 'projects')) {
+      didShowAresHint.current = true
+      setShowAresHint(true)
+    }
+  }, [windows])
 
   return (
     <main
@@ -36,20 +63,27 @@ export function Desktop() {
     >
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(0,0,0,0.02)_45%,rgba(0,0,0,0.18))]" />
       <div className="xp-screen-lines pointer-events-none absolute inset-0" />
-      <div className="relative grid w-24 grid-flow-row auto-rows-[91px] gap-1 p-3">
+      <div className="absolute inset-x-0 top-0" style={{ bottom: TASKBAR_HEIGHT_PX }}>
         {DESKTOP_APPS.map((app: DesktopIconConfig) => (
           <DesktopIcon key={app.appId} app={app} />
         ))}
       </div>
 
       {windows.map((windowState) => (
-        <Window key={windowState.id} windowState={windowState}>
-          {renderApp(windowState.appId)}
-        </Window>
+        <Window key={windowState.id} windowState={windowState} />
       ))}
 
-      <XPNotification />
-      <Taskbar />
+      <XPNotification
+        visible={showXPNotification}
+        onClose={() => setShowXPNotification(false)}
+      />
+      <AresHintNotification visible={showAresHint} onClose={() => setShowAresHint(false)} />
+      <Taskbar
+        onLogout={onLogout}
+        onPower={onPower}
+        isNotificationOpen={showXPNotification}
+        onNotificationToggle={() => setShowXPNotification((visible) => !visible)}
+      />
     </main>
   )
 }

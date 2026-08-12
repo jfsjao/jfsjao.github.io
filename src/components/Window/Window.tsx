@@ -1,19 +1,26 @@
+import { memo, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { useWindowStore } from '../../store/windowStore'
 import type { WindowState } from '../../types/window.types'
 import { TitleBar } from './TitleBar'
 import { ResizeHandle } from './ResizeHandle'
 import type { PointerEvent as ReactPointerEvent } from 'react'
+import { TASKBAR_HEIGHT_PX } from '../../config/layout.config'
+import { renderApp } from '../../config/appRegistry'
 
 interface WindowProps {
   windowState: WindowState
-  children: React.ReactNode
 }
 
-export function Window({ windowState, children }: WindowProps) {
+function WindowComponent({ windowState }: WindowProps) {
   const focusWindow = useWindowStore((state) => state.focusWindow)
   const moveWindow = useWindowStore((state) => state.moveWindow)
   const resizeWindow = useWindowStore((state) => state.resizeWindow)
+
+  // Rendering the app body is expensive (canvas draws, lists, etc). Since the
+  // appId of a window never changes after it's opened, memoize it so dragging
+  // or resizing this window (or any other) never re-mounts/re-renders its content.
+  const appContent = useMemo(() => renderApp(windowState.appId), [windowState.appId])
 
   if (windowState.isMinimized) {
     return null
@@ -36,7 +43,7 @@ export function Window({ windowState, children }: WindowProps) {
       const nextX = startWindowX + moveEvent.clientX - startPointerX
       const nextY = startWindowY + moveEvent.clientY - startPointerY
       const maxX = Math.max(0, window.innerWidth - windowState.width)
-      const maxY = Math.max(0, window.innerHeight - 40 - 28)
+      const maxY = Math.max(0, window.innerHeight - TASKBAR_HEIGHT_PX - 28)
 
       moveWindow(
         windowState.id,
@@ -70,7 +77,7 @@ export function Window({ windowState, children }: WindowProps) {
 
     const handlePointerMove = (moveEvent: PointerEvent) => {
       const maxWidth = Math.max(260, window.innerWidth - windowState.x)
-      const maxHeight = Math.max(160, window.innerHeight - 40 - windowState.y)
+      const maxHeight = Math.max(160, window.innerHeight - TASKBAR_HEIGHT_PX - windowState.y)
       const nextWidth = startWidth + moveEvent.clientX - startPointerX
       const nextHeight = startHeight + moveEvent.clientY - startPointerY
 
@@ -93,10 +100,12 @@ export function Window({ windowState, children }: WindowProps) {
   return (
     <motion.section
       onMouseDown={() => focusWindow(windowState.id)}
-      className="absolute flex flex-col overflow-hidden rounded-[6px_6px_3px_3px] border border-[#0831d9] bg-xp-window-bg p-[2px] shadow-window"
+      className={`absolute flex flex-col overflow-hidden rounded-[7px_7px_2px_2px] border-[3px] bg-[#0054e3] shadow-[2px_3px_10px_rgba(0,0,0,0.45),inset_1px_1px_0_rgba(255,255,255,0.38)] ${
+        windowState.isFocused ? 'border-[#0054e3]' : 'border-[#7697e7]'
+      }`}
       style={{
         display: windowState.isMinimized ? 'none' : 'flex',
-        height: windowState.isMaximized ? 'calc(100svh - 40px)' : windowState.height,
+        height: windowState.isMaximized ? `calc(100svh - ${TASKBAR_HEIGHT_PX}px)` : windowState.height,
         left: windowState.isMaximized ? 0 : windowState.x,
         top: windowState.isMaximized ? 0 : windowState.y,
         width: windowState.isMaximized ? '100vw' : windowState.width,
@@ -104,10 +113,15 @@ export function Window({ windowState, children }: WindowProps) {
       }}
     >
       <TitleBar onDragStart={handleDragStart} windowState={windowState} />
-      <div className="min-h-0 flex-1 overflow-auto border border-[#00138c] bg-xp-window-inner text-xp-base shadow-[inset_1px_1px_0_#ffffff,inset_-1px_-1px_0_#aca899]">
-        {children}
+      <div className="mx-0 min-h-0 flex-1 overflow-auto border-x border-b border-[#00138c] bg-xp-window-inner text-xp-base">
+        {appContent}
       </div>
       <ResizeHandle onResizeStart={handleResizeStart} windowState={windowState} />
     </motion.section>
   )
 }
+
+// windowStore keeps referential identity for windows untouched by a given
+// update (see moveWindow/resizeWindow), so this memo means dragging/resizing
+// one window doesn't re-render every other open window's app content.
+export const Window = memo(WindowComponent, (prev, next) => prev.windowState === next.windowState)

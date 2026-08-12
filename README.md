@@ -1,4 +1,4 @@
-# Portifolio JF - Windows XP
+# Portifolio - Windows XP
 
 ## Referência técnica
 

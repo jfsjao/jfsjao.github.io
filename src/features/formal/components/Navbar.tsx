@@ -16,7 +16,7 @@ const LINKS = [
 
 export function Navbar({ onOpenWindows }: NavbarProps) {
   return (
-    <header className="sticky top-0 z-40 border-b border-formal-border/70 bg-formal-bg/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-40 border-b border-formal-border/70 bg-formal-bg/95">
       <nav
         aria-label="Navegação principal"
         className="mx-auto flex h-16 max-w-7xl items-center justify-end gap-4 px-5 md:h-[76px] md:px-8 lg:grid lg:grid-cols-[1fr_auto_1fr]"

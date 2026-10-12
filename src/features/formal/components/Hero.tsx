@@ -13,12 +13,14 @@ export function Hero() {
       const mm = gsap.matchMedia()
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
+        // Título e lead (o elemento de LCP) NUNCA ficam com opacity 0: só sobem
+        // alguns px. Assim o nome aparece no primeiro paint e o LCP não espera
+        // a animação. Elementos secundários têm um fade curto (< 0.8s no total).
         const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-        tl.from('[data-hero-badge]', { autoAlpha: 0, y: 10, duration: 0.5 })
-          .from('[data-hero-meta]', { autoAlpha: 0, y: 10, duration: 0.5 }, '<')
-          .from('[data-hero-title-line]', { autoAlpha: 0, y: 28, duration: 0.8, stagger: 0.08 }, '-=0.2')
-          .from('[data-hero-lead]', { autoAlpha: 0, y: 14, duration: 0.6 }, '-=0.4')
-          .from('[data-hero-cta]', { autoAlpha: 0, y: 14, duration: 0.6, stagger: 0.06 }, '-=0.45')
+        tl.from('[data-hero-title-line]', { y: 16, duration: 0.5, stagger: 0.06 })
+          .from('[data-hero-lead]', { y: 10, duration: 0.5 }, '<0.05')
+          .from('[data-hero-badge], [data-hero-meta]', { autoAlpha: 0, y: 8, duration: 0.4 }, 0)
+          .from('[data-hero-cta]', { autoAlpha: 0, y: 10, duration: 0.4, stagger: 0.05 }, 0.15)
       })
 
       return () => mm.revert()

@@ -24,12 +24,12 @@ interface Project {
 export const ABOUT = {
   name: 'João Felipe Silva',
   role: 'Desenvolvedor Full Stack',
-  bio: `Desenvolvedor Full Stack formado em Sistemas de Informação pela UFU, com
-experiência em TypeScript, Node.js, Angular, C#, Python e SQL. Atua como freelancer
-desenvolvendo e mantendo aplicações web de ponta a ponta, com passagem profissional por
-sistemas corporativos nas áreas de educação e financeira.
-Também tem pesquisa científica em IA e visão computacional, e foi professor
-voluntário de desenvolvimento web.`,
+  // Quebra de linha só entre parágrafos: o "Sobre mim" usa whitespace-pre-line,
+  // então cada \n vira quebra visível na tela.
+  bio: [
+    'Desenvolvedor Full Stack formado em Sistemas de Informação pela UFU, com experiência em TypeScript, Node.js, Angular, C#, Python e SQL. Atua como freelancer desenvolvendo e mantendo aplicações web de ponta a ponta, com passagem profissional por sistemas corporativos nas áreas de educação e financeira.',
+    'Também tem pesquisa científica em IA e visão computacional, e foi professor voluntário de desenvolvimento web.',
+  ].join('\n\n'),
   photo: '/assets/foto.jpg',
   location: 'São Carlos, SP',
   available: true,

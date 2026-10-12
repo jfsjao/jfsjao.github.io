@@ -6,10 +6,16 @@ import { useGSAP } from '@gsap/react'
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 /**
- * Revela os filhos diretos com `data-reveal` de uma seção com um fade+subida
- * curto ao entrar na viewport. Respeita `prefers-reduced-motion` via
- * gsap.matchMedia. Usuários com a preferência ativa recebem apenas um fade
- * instantâneo, sem deslocamento.
+ * Revela os elementos com `data-reveal` com um fade+subida curto ao entrarem
+ * na viewport.
+ *
+ * Performance: em vez de um fromTo + ScrollTrigger por elemento (35 tweens
+ * lendo estilo computado intercalado com escrita = layout thrashing no load),
+ * usa um único `gsap.set` (lê tudo, depois escreve tudo) e `ScrollTrigger.batch`
+ * com `once: true`, que anima em lote e descarta o trigger depois de revelar.
+ * Nada volta a sumir ao rolar para cima.
+ *
+ * Com `prefers-reduced-motion: reduce` nada é escondido: o conteúdo já aparece.
  */
 export function useSectionReveal<T extends HTMLElement>() {
   const scope = useRef<T>(null)
@@ -21,33 +27,24 @@ export function useSectionReveal<T extends HTMLElement>() {
 
       const mm = gsap.matchMedia()
 
-      mm.add(
-        {
-          reduceMotion: '(prefers-reduced-motion: reduce)',
-          fullMotion: '(prefers-reduced-motion: no-preference)',
-        },
-        (context) => {
-          const { reduceMotion } = context.conditions as { reduceMotion: boolean }
+      mm.add('(prefers-reduced-motion: no-preference)', (context) => {
+        gsap.set(targets, { autoAlpha: 0, y: 24 })
 
-          targets.forEach((el) => {
-            gsap.fromTo(
-              el,
-              { autoAlpha: 0, y: reduceMotion ? 0 : 24 },
-              {
-                autoAlpha: 1,
-                y: 0,
-                duration: reduceMotion ? 0.01 : 0.6,
-                ease: 'power2.out',
-                scrollTrigger: {
-                  trigger: el,
-                  start: 'top 85%',
-                  toggleActions: 'play none none reverse',
-                },
-              },
-            )
-          })
-        },
-      )
+        // context.add: tweens criados depois (no callback) também entram no
+        // revert do matchMedia/useGSAP.
+        const reveal = context.add('reveal', (batch: Element[]) =>
+          gsap.to(batch, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.5,
+            ease: 'power2.out',
+            stagger: 0.06,
+            overwrite: true,
+          }),
+        ) as ScrollTrigger.BatchCallback
+
+        ScrollTrigger.batch(targets, { start: 'top 92%', once: true, onEnter: reveal })
+      })
 
       return () => mm.revert()
     },

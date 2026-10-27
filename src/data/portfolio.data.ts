@@ -83,7 +83,7 @@ export const PROJECTS: Project[] = [
     id: 4,
     name: 'Mid Cardápio.exe',
     description:
-      'Cardápio digital mobile-first da MID Conveniência. O cliente monta o pedido e envia direto pelo WhatsApp',
+      'Cardápio digital mobile-first da MID Conveniência, sem taxa de app de entrega: o cliente monta o pedido e envia direto pelo WhatsApp da loja',
     tech: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'GSAP'],
     size: '4.1 MB',
     seeds: 19,
@@ -92,7 +92,6 @@ export const PROJECTS: Project[] = [
     demo: '',
     status: 'progress' as const,
     fundamentals: ['Mobile-first'],
-    hidden: true,
   },
   {
     id: 5,

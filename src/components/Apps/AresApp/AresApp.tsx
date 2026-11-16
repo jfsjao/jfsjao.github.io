@@ -61,7 +61,7 @@ export function AresApp() {
         ))}
       </div>
 
-      <div className="grid min-h-0 flex-1 grid-cols-1 md:grid-cols-[238px_1fr]">
+      <div className="grid min-h-0 flex-1 grid-cols-1 md:grid-cols-[200px_minmax(0,1fr)]">
         <aside className="border-r border-[#8aa7cf] bg-[#d9ebf7] p-3">
           <label htmlFor="ares-search" className="mb-2 flex items-center gap-1 font-bold">
             <span className="flex h-5 w-5 items-center justify-center border border-[#8aa7cf] bg-white text-[#3b82c4]">
@@ -129,14 +129,12 @@ export function AresApp() {
             </span>
           </div>
 
-          <div className="hidden grid-cols-[24px_minmax(160px,1fr)_120px_70px_78px_64px_110px] gap-1 border-b border-[#b4c7d8] bg-[#eef6ff] px-2 py-1 text-[14px] font-bold sm:grid">
+          <div className="hidden grid-cols-[24px_minmax(0,1fr)_96px_72px_64px] gap-1 border-b border-[#b4c7d8] bg-[#eef6ff] px-2 py-1 text-[14px] font-bold sm:grid">
             <span />
             <span>Título</span>
             <span>Autor</span>
             <span>Tipo</span>
             <span>Tamanho</span>
-            <span>Disp.</span>
-            <span>Origem</span>
           </div>
 
           <div className="min-h-0 flex-1 overflow-auto" role="listbox" aria-label="Projetos">

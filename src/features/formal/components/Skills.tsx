@@ -12,7 +12,8 @@ const CATEGORIES: Array<{ label: string; match: (name: string) => boolean }> = [
   { label: 'Front-end', match: (name) => /Angular|TypeScript|React/.test(name) },
   { label: 'Back-end', match: (name) => /Python|C#|Node\.js/.test(name) },
   { label: 'Dados', match: (name) => /SQL/.test(name) },
-  { label: 'DevOps & Ferramentas', match: (name) => /Git|Docker|Linux/.test(name) },
+  { label: 'DevOps & Ferramentas', match: (name) => /Git|Docker|Linux|Testes/.test(name) },
+  { label: 'IA', match: (name) => /Agentes de IA/.test(name) },
 ]
 
 export function Skills() {
@@ -26,7 +27,7 @@ export function Skills() {
       <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
         <SectionHeading index="05" label="Skills" title="Skills" />
 
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
           {grouped.map((group) => (
             <div key={group.label} data-reveal>
               <h3 className="mb-4 font-meta text-xs font-semibold uppercase tracking-wide text-formal-teal">

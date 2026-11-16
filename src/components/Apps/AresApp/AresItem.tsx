@@ -30,8 +30,8 @@ export function AresItem({ index, project, isSelected, onSelect }: AresItemProps
       onKeyDown={(event) => {
         if (event.key === 'Enter') openProject()
       }}
-      className={`grid cursor-default grid-cols-[24px_minmax(160px,1fr)_120px_70px_78px_64px_110px] items-center gap-1 border-b border-[#d7e2f2] px-2 py-1 text-[14px] hover:bg-[#dcecff] ${
-        isSelected ? 'bg-[#1f70c7] text-white hover:bg-[#1f70c7]' : 'bg-white'
+      className={`grid cursor-default grid-cols-[24px_minmax(0,1fr)_96px_72px_64px] items-center gap-1 border-b border-[#d7e2f2] px-2 py-1 text-[14px] ${
+        isSelected ? 'bg-[#1f70c7] text-white' : 'bg-white hover:bg-[#dcecff]'
       }`}
     >
       <span className="text-center">{index + 1}</span>
@@ -48,9 +48,7 @@ export function AresItem({ index, project, isSelected, onSelect }: AresItemProps
       </span>
       <span className="truncate">João Felipe</span>
       <span>{type}</span>
-      <span>Projeto</span>
-      <span className="text-[#17823b]">Sim</span>
-      <span className="truncate">GitHub</span>
+      <span>{project.size}</span>
     </div>
   )
 }

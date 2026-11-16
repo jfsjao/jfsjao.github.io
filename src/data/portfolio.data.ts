@@ -27,8 +27,9 @@ export const ABOUT = {
   // Quebra de linha só entre parágrafos: o "Sobre mim" usa whitespace-pre-line,
   // então cada \n vira quebra visível na tela.
   bio: [
-    'Desenvolvedor Full Stack formado em Sistemas de Informação pela UFU, com experiência em TypeScript, Node.js, Angular, C#, Python e SQL. Atua como freelancer desenvolvendo e mantendo aplicações web de ponta a ponta, com passagem profissional por sistemas corporativos nas áreas de educação e financeira.',
-    'Também tem pesquisa científica em IA e visão computacional, e foi professor voluntário de desenvolvimento web.',
+    'Desenvolvedor formado em Sistemas de Informação pela UFU. Fui trainee em sistemas financeiros em produção (C#, .NET, Delphi e Oracle SQL) e hoje construo aplicações web com React, Angular, Node.js e TypeScript, como uma plataforma de produtos digitais no ar e um marketplace de NFTs com testes E2E.',
+    'Uso agentes de IA no fluxo de desenvolvimento: Claude Code, Codex, Gemini e OpenCode divididos entre planejar, codar e revisar, com agentes e skills que eu mesmo configurei.',
+    'Também fiz pesquisa científica em IA e visão computacional e fui professor voluntário de desenvolvimento web.',
   ].join('\n\n'),
   photo: '/assets/foto.jpg',
   location: 'São Carlos, SP',
@@ -94,6 +95,20 @@ export const PROJECTS: Project[] = [
     fundamentals: ['Mobile-first'],
   },
   {
+    id: 7,
+    name: 'Kurio NFT Marketplace.exe',
+    description:
+      'Marketplace de NFTs com catálogo, carrinho, checkout com cotação em ETH e pedidos em tempo real, com API e Socket.IO simulados por MSW. Feito com agentes de IA orquestrados: Gemini planejou, Codex codou, OpenCode revisou e Claude Code coordenou',
+    tech: ['React', 'TypeScript', 'Vite', 'TanStack Query', 'Socket.IO', 'Tailwind CSS', 'Playwright'],
+    size: '5.2 MB',
+    seeds: 23,
+    peers: 4,
+    url: 'https://nft-marketplace-one-rosy.vercel.app',
+    demo: 'https://github.com/jfsjao/nft-marketplace',
+    status: 'complete' as const,
+    fundamentals: ['Testes E2E'],
+  },
+  {
     id: 5,
     name: 'Diagnóstico Financeiro.exe',
     description:
@@ -127,14 +142,16 @@ export const PROJECTS: Project[] = [
 export const SKILLS = [
   { name: 'Angular', level: 85 },
   { name: 'TypeScript / JavaScript', level: 80 },
+  { name: 'Agentes de IA (Claude Code, Codex, OpenCode)', level: 70 },
   { name: 'Python', level: 75 },
   { name: 'C# / .NET', level: 70 },
   { name: 'Node.js', level: 35 },
-  { name: 'SQL (Oracle, MySQL, PostgreSQL)', level: 80 },
+  { name: 'SQL (Oracle, PostgreSQL)', level: 80 },
   { name: 'Git / CI-CD', level: 75 },
   { name: 'Docker', level: 65 },
   { name: 'Linux', level: 65 },
   { name: 'React', level: 60 },
+  { name: 'Testes (Vitest, Playwright)', level: 45 },
 ]
 
 export const CONTACTS = [
@@ -144,12 +161,14 @@ export const CONTACTS = [
 ]
 
 export const MSN_CONTACTS = [
-  { name: 'Angular Expert 🟢', status: 'online', message: '4+ anos de experiência' },
-  { name: 'Python Dev 🟢', status: 'online', message: 'dados, IA e backend' },
-  { name: 'SQL Master 🟢', status: 'online', message: 'Oracle, MySQL, PostgreSQL' },
-  { name: 'C# Developer 🟢', status: 'online', message: 'sistemas financeiros' },
-  { name: 'React Learner 🟡', status: 'away', message: 'em evolução...' },
-  { name: 'Node.js Newbie 🟡', status: 'away', message: 'aprendendo backend...' },
-  { name: 'Docker 🟡', status: 'away', message: 'containerizando tudo' },
-  { name: 'Linux User 🟢', status: 'online', message: 'terminal é vida' },
-]
+  { name: 'Agentes de IA', status: 'online', message: 'Claude Code, Codex e OpenCode no dia a dia' },
+  { name: 'Angular Expert', status: 'online', message: '4+ anos de experiência' },
+  { name: 'Python Dev', status: 'online', message: 'dados, IA e backend' },
+  { name: 'SQL Master', status: 'online', message: 'Oracle e PostgreSQL' },
+  { name: 'C# Developer', status: 'online', message: '.NET e Delphi na trainee' },
+  { name: 'Linux User', status: 'online', message: 'terminal é vida' },
+  { name: 'React Learner', status: 'away', message: 'em evolução...' },
+  { name: 'Node.js Newbie', status: 'away', message: 'aprendendo backend...' },
+  { name: 'Docker', status: 'away', message: 'containerizando tudo' },
+  { name: 'Testes', status: 'away', message: 'Vitest e Playwright no Kurio' },
+] as const

@@ -1,5 +1,5 @@
 import { ABOUT } from '../../../data/portfolio.data'
-import pictureIcon from '../../../assets/icons/background__pictures.png'
+import profilePhoto from '../../../assets/foto-perfil.jpeg'
 import { WordToolbar } from './WordToolbar'
 
 function HorizontalRuler() {
@@ -45,7 +45,7 @@ export function WordApp() {
               {ABOUT.name}
             </h1>
             <p className="mb-6 font-serif text-[28px] leading-snug">{ABOUT.role}</p>
-            <p className="w-[340px] text-[16px] leading-relaxed">{ABOUT.bio}</p>
+            <p className="w-[340px] whitespace-pre-line text-[15px] leading-relaxed">{ABOUT.bio}</p>
 
             <div className="absolute right-16 top-44 h-36 w-36 border border-[#555] bg-white p-1">
               <span className="absolute -top-2 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-[#00a651]" />
@@ -58,8 +58,8 @@ export function WordApp() {
                 ),
               )}
               <img
-                src={pictureIcon}
-                alt=""
+                src={profilePhoto}
+                alt={`Foto de ${ABOUT.name}`}
                 className="h-full w-full object-cover"
                 draggable={false}
               />
